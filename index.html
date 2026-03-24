@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js" data-site-lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doğukan Balaman — Software Engineer & AI Specialist</title>
+    <meta
+        name="description"
+        content="Portfolio of Doğukan Balaman — AI-focused Software Engineer, bilingual EN/TR specialist building intelligent systems from Istanbul."
+    >
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#050505">
+    <meta name="color-scheme" content="dark">
+
+    <meta property="og:title" content="Doğukan Balaman — Software Engineer & AI Specialist">
+    <meta
+        property="og:description"
+        content="AI-focused Software Engineer with C2 English mastery. Building RAG systems, cross-platform apps, and data pipelines."
+    >
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://esn2k.github.io/" id="ogUrlMeta">
+    <meta property="og:site_name" content="Doğukan Balaman Portfolio">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:image" content="https://esn2k.github.io/assets/profile.jpg">
+    <meta property="og:image:alt" content="Portrait of Doğukan Balaman">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Doğukan Balaman — Software Engineer & AI Specialist">
+    <meta
+        name="twitter:description"
+        content="AI-focused Software Engineer with C2 English mastery. Building RAG systems, cross-platform apps, and data pipelines."
+    >
+    <meta name="twitter:image" content="https://esn2k.github.io/assets/profile.jpg">
+
+    <link rel="canonical" href="https://esn2k.github.io/" id="canonicalLink">
+    <link rel="alternate" hreflang="x-default" href="https://esn2k.github.io/">
+    <link rel="alternate" hreflang="en" href="https://esn2k.github.io/">
+    <link rel="alternate" hreflang="tr" href="https://esn2k.github.io/?lang=tr">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+    <script>
+        (() => {
+            const params = new URLSearchParams(window.location.search);
+            const queryLang = params.get('lang');
+            let storedLang = null;
+
+            try {
+                storedLang = window.localStorage.getItem('site-lang');
+            } catch {
+                storedLang = null;
+            }
+
+            const browserLang = navigator.language && navigator.language.toLowerCase().startsWith('tr') ? 'tr' : 'en';
+            const initialLang = queryLang === 'tr' || queryLang === 'en'
+                ? queryLang
+                : storedLang === 'tr' || storedLang === 'en'
+                    ? storedLang
+                    : browserLang;
+
+            document.documentElement.classList.replace('no-js', 'js');
+            document.documentElement.lang = initialLang;
+            document.documentElement.dataset.siteLang = initialLang;
+            window.__INITIAL_SITE_LANG__ = initialLang;
+        })();
+    </script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link" data-i18n="skip.link">Skip to content</a>
+
+    <nav id="navbar" aria-label="Primary">
+        <div class="nav-container">
+            <a href="#hero" class="nav-logo" aria-label="Go to top of page">esN2k<span class="accent">.</span></a>
+
+            <button
+                class="nav-toggle"
+                id="navToggle"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-controls="navPanel"
+                aria-expanded="false"
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-panel" id="navPanel">
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#about" data-i18n="nav.about">About</a></li>
+                    <li><a href="#skills" data-i18n="nav.skills">Skills</a></li>
+                    <li><a href="#experience" data-i18n="nav.experience">Experience</a></li>
+                    <li><a href="#projects" data-i18n="nav.projects">Projects</a></li>
+                    <li><a href="#education" data-i18n="nav.education">Education</a></li>
+                    <li><a href="#contact" class="nav-cta" data-i18n="nav.contact">Contact</a></li>
+                </ul>
+
+                <div
+                    class="lang-switcher"
+                    role="group"
+                    aria-label="Language switcher"
+                    data-i18n-aria-label="nav.languageAria"
+                >
+                    <button type="button" class="lang-switch" data-lang="en" aria-pressed="true" aria-label="Switch to English">
+                        EN
+                    </button>
+                    <button type="button" class="lang-switch" data-lang="tr" aria-pressed="false" aria-label="Türkçeye geç">
+                        TR
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main id="main-content">
+        <section id="hero">
+            <div class="hero-bg" aria-hidden="true">
+                <div class="hero-gradient"></div>
+                <div class="hero-grid"></div>
+            </div>
+
+            <div class="hero-content">
+                <div class="hero-badge" data-i18n="hero.badge">Available for Work</div>
+
+                <h1>
+                    <span class="hero-greeting" data-i18n="hero.greeting">Hi, I'm</span>
+                    <span class="hero-name" data-i18n="hero.name">Doğukan Balaman</span>
+                </h1>
+
+                <div class="hero-role-wrapper">
+                    <span class="hero-role-prefix" data-i18n="hero.rolePrefix">I build</span>
+                    <span class="sr-only" id="heroRoleSummary" data-i18n="hero.roleSummary">
+                        AI-powered systems, cross-platform apps, RAG pipelines, data dashboards, and bilingual solutions.
+                    </span>
+                    <span class="hero-role" id="heroRole" aria-hidden="true">AI-Powered Systems</span>
+                    <span class="hero-cursor" aria-hidden="true">|</span>
+                </div>
+
+                <p class="hero-desc" data-i18n-html="hero.description">
+                    AI-focused Software Engineer with <strong>C2 English mastery</strong>, crafting intelligent systems from
+                    Istanbul for the world.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="#projects" class="btn btn-primary" data-i18n="hero.ctaPrimary">Explore My Intelligence</a>
+                    <a href="#contact" class="btn btn-ghost" data-i18n="hero.ctaSecondary">Hire Me</a>
+                </div>
+
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-value">
+                            <span class="stat-number" data-target="30">0</span>
+                            <span class="stat-suffix" data-i18n="hero.stats.projects.suffix">+</span>
+                        </span>
+                        <span class="stat-label" data-i18n="hero.stats.projects.label">Projects Built</span>
+                    </div>
+
+                    <div class="stat">
+                        <span class="stat-value">
+                            <span class="stat-number" data-target="4">0</span>
+                            <span class="stat-suffix" data-i18n="hero.stats.experience.suffix"></span>
+                        </span>
+                        <span class="stat-label" data-i18n="hero.stats.experience.label">Work Experiences</span>
+                    </div>
+
+                    <div class="stat">
+                        <span class="stat-value">
+                            <span class="stat-number" data-target="92">0</span>
+                            <span class="stat-suffix" data-i18n="hero.stats.score.suffix">/100</span>
+                        </span>
+                        <span class="stat-label" data-i18n="hero.stats.score.label">YÖKDİL Score</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="scroll-indicator" aria-hidden="true">
+                <div class="scroll-line"></div>
+            </div>
+        </section>
+
+        <section id="about" class="section">
+            <div class="container">
+                <h2 class="section-title">
+                    <span class="section-number">01.</span>
+                    <span data-i18n="sections.about">About Me</span>
+                </h2>
+
+                <div class="about-grid">
+                    <div class="about-image-wrapper reveal">
+                        <div class="about-image-frame">
+                            <img
+                                src="assets/profile.jpg"
+                                alt="Portrait of Doğukan Balaman"
+                                class="about-image"
+                                width="600"
+                                height="800"
+                                loading="lazy"
+                                decoding="async"
+                                data-i18n-alt="about.imageAlt"
+                            >
+                        </div>
+                        <div class="about-image-decoration" aria-hidden="true"></div>
+                    </div>
+
+                    <div class="about-text reveal">
+                        <p data-i18n-html="about.p1">
+                            I'm a <strong>Computer Engineering</strong> senior at Selçuk University with a passion for
+                            building systems that think. My journey spans from <strong>AI-powered RAG chatbots</strong> to
+                            <strong>cross-platform mobile apps</strong> and <strong>enterprise analytics portals</strong>.
+                        </p>
+
+                        <p data-i18n-html="about.p2">
+                            What sets me apart? I'm <strong>natively bilingual</strong> with verified C2 English mastery
+                            (YÖKDİL 92/100, EF SET C2), plus immersive study-abroad experience in the
+                            <span class="flag">🇬🇧</span> UK and <span class="flag">🇨🇦</span> Canada.
+                        </p>
+
+                        <p data-i18n-html="about.p3">
+                            Currently, I'm building my thesis project, a <strong>multilingual RAG chatbot</strong> using
+                            LangChain, FAISS, and Ollama, while coordinating operations across 12 branches in my current role.
+                        </p>
+
+                        <div class="about-languages">
+                            <div class="lang-card">
+                                <span class="lang-flag">🇹🇷</span>
+                                <span class="lang-name" data-i18n="about.languages.turkish.name">Turkish</span>
+                                <span class="lang-level" data-i18n="about.languages.turkish.level">Native</span>
+                            </div>
+
+                            <div class="lang-card">
+                                <span class="lang-flag">🇬🇧</span>
+                                <span class="lang-name" data-i18n="about.languages.english.name">English</span>
+                                <span class="lang-level" data-i18n="about.languages.english.level">C2 Mastery</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="section">
+            <div class="container">
+                <h2 class="section-title">
+                    <span class="section-number">02.</span>
+                    <span data-i18n="sections.skills">Skills &amp; Tools</span>
+                </h2>
+
+                <div class="skills-grid">
+                    <div class="skill-category reveal">
+                        <div class="skill-icon" aria-hidden="true">🧠</div>
+                        <h3 data-i18n="skills.categories.brain">The Brain — AI & ML</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">LangChain</span>
+                            <span class="skill-tag">RAG Pipelines</span>
+                            <span class="skill-tag">FAISS</span>
+                            <span class="skill-tag">Ollama / LLM</span>
+                            <span class="skill-tag">Machine Learning</span>
+                            <span class="skill-tag">Computer Vision</span>
+                            <span class="skill-tag">Prompt Engineering</span>
+                            <span class="skill-tag">NLP</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category reveal">
+                        <div class="skill-icon" aria-hidden="true">⚙️</div>
+                        <h3 data-i18n="skills.categories.hands">The Hands — Dev/Ops</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">Dart / Flutter</span>
+                            <span class="skill-tag">FastAPI</span>
+                            <span class="skill-tag">C# / .NET</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">Docker</span>
+                            <span class="skill-tag">Git / GitHub</span>
+                            <span class="skill-tag">Power BI</span>
+                            <span class="skill-tag">MSSQL</span>
+                            <span class="skill-tag">REST APIs</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category reveal">
+                        <div class="skill-icon" aria-hidden="true">🗣️</div>
+                        <h3 data-i18n="skills.categories.voice">The Voice — C2 English</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">EN/TR Translation</span>
+                            <span class="skill-tag">Localization</span>
+                            <span class="skill-tag">Data Annotation</span>
+                            <span class="skill-tag">LLM Evaluation</span>
+                            <span class="skill-tag">Proofreading</span>
+                            <span class="skill-tag">Content QA</span>
+                            <span class="skill-tag">Technical Writing</span>
+                            <span class="skill-tag">YÖKDİL 92/100</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="section">
+            <div class="container">
+                <h2 class="section-title">
+                    <span class="section-number">03.</span>
+                    <span data-i18n="sections.experience">Experience</span>
+                </h2>
+
+                <div class="timeline">
+                    <div class="timeline-item reveal">
+                        <div class="timeline-marker" aria-hidden="true"></div>
+                        <div class="timeline-content glass-card">
+                            <div class="timeline-header">
+                                <h3 data-i18n="experience.logistics.role">Logistics Coordinator</h3>
+                                <span class="timeline-company" data-i18n="experience.logistics.company">Ser Yöresel Dry Foods</span>
+                            </div>
+                            <span class="timeline-date" data-i18n="experience.logistics.date">Jul 2024 — Present</span>
+                            <ul>
+                                <li data-i18n-html="experience.logistics.bullets.0">
+                                    Coordinating inventory, procurement, and warehouse operations across <strong>12 branches</strong>
+                                </li>
+                                <li data-i18n-html="experience.logistics.bullets.1">
+                                    Built internal inventory platform with <strong>55% faster fulfillment</strong> and
+                                    <strong>60% fewer shortages</strong>
+                                </li>
+                                <li data-i18n-html="experience.logistics.bullets.2">
+                                    Applied data analytics for KPI monitoring, driving a <strong>35% efficiency boost</strong> and
+                                    <strong>30% cost reduction</strong>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item reveal">
+                        <div class="timeline-marker" aria-hidden="true"></div>
+                        <div class="timeline-content glass-card">
+                            <div class="timeline-header">
+                                <h3 data-i18n="experience.bi.role">BI &amp; Data Engineering Intern</h3>
+                                <span class="timeline-company" data-i18n="experience.bi.company">Bi-Art (Remote)</span>
+                            </div>
+                            <span class="timeline-date" data-i18n="experience.bi.date">Oct 2025 — Jan 2026</span>
+                            <ul>
+                                <li data-i18n-html="experience.bi.bullets.0">
+                                    Created MSSQL analytical queries and interactive <strong>Power BI dashboards</strong>
+                                </li>
+                                <li data-i18n-html="experience.bi.bullets.1">
+                                    Supported business intelligence and data warehouse operations in a remote environment
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item reveal">
+                        <div class="timeline-marker" aria-hidden="true"></div>
+                        <div class="timeline-content glass-card">
+                            <div class="timeline-header">
+                                <h3 data-i18n="experience.export.role">Export Operations Representative</h3>
+                                <span class="timeline-company" data-i18n="experience.export.company">Kardelen Nuts</span>
+                            </div>
+                            <span class="timeline-date" data-i18n="experience.export.date">Apr 2024 — Jul 2024</span>
+                            <ul>
+                                <li data-i18n-html="experience.export.bullets.0">
+                                    Built the export pipeline from scratch and expanded international B2B relationships
+                                </li>
+                                <li data-i18n-html="experience.export.bullets.1">
+                                    Executed outreach campaigns contributing to a <strong>20% total revenue increase</strong>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item reveal">
+                        <div class="timeline-marker" aria-hidden="true"></div>
+                        <div class="timeline-content glass-card">
+                            <div class="timeline-header">
+                                <h3 data-i18n="experience.software.role">Software Developer &amp; Business Development</h3>
+                                <span class="timeline-company" data-i18n="experience.software.company">Essen Trade</span>
+                            </div>
+                            <span class="timeline-date" data-i18n="experience.software.date">Jan 2024 — Apr 2024</span>
+                            <ul>
+                                <li data-i18n-html="experience.software.bullets.0">
+                                    Shipped <strong>EssenYemek</strong>, a cross-platform Flutter food delivery app for
+                                    iOS, Android, and Web
+                                </li>
+                                <li data-i18n-html="experience.software.bullets.1">
+                                    Created the corporate website from scratch using JavaScript, HTML, and CSS
+                                </li>
+                                <li data-i18n-html="experience.software.bullets.2">
+                                    Delivered bilingual EN/TR technical translation for international client operations
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="section">
+            <div class="container">
+                <h2 class="section-title">
+                    <span class="section-number">04.</span>
+                    <span data-i18n="sections.projects">Featured Projects</span>
+                </h2>
+
+                <div class="projects-grid">
+                    <article class="project-card glass-card reveal" id="project-selcukai">
+                        <div class="project-header">
+                            <span class="project-icon" aria-hidden="true">🤖</span>
+                            <div class="project-links">
+                                <a
+                                    href="https://github.com/esN2k/SelcukAiAssistant"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    data-i18n-aria-label="projects.selcuk.linkLabel"
+                                    aria-label="Open Selçuk AI Assistant on GitHub"
+                                >
+                                    <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                        <h3 class="project-title" data-i18n="projects.selcuk.title">Selçuk AI Assistant</h3>
+                        <span class="project-badge" data-i18n="projects.selcuk.badge">Thesis Project</span>
+                        <p class="project-desc" data-i18n="projects.selcuk.description">
+                            End-to-end multilingual RAG pipeline supporting complex EN/TR contextual queries. Flutter UI +
+                            FastAPI backend powered by LangChain, FAISS, and Ollama.
+                        </p>
+                        <div class="project-tags">
+                            <span>Python</span>
+                            <span>LangChain</span>
+                            <span>FAISS</span>
+                            <span>Flutter</span>
+                            <span>FastAPI</span>
+                            <span>Ollama</span>
+                        </div>
+                    </article>
+
+                    <article class="project-card glass-card reveal" id="project-perfectframe">
+                        <div class="project-header">
+                            <span class="project-icon" aria-hidden="true">🎨</span>
+                            <div class="project-links">
+                                <a
+                                    href="https://github.com/esN2k/PerfectFrameAI"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    data-i18n-aria-label="projects.perfectframe.linkLabel"
+                                    aria-label="Open PerfectFrameAI on GitHub"
+                                >
+                                    <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                        <h3 class="project-title" data-i18n="projects.perfectframe.title">PerfectFrameAI</h3>
+                        <p class="project-desc" data-i18n="projects.perfectframe.description">
+                            Scalable AI content enhancement tool with facial restoration using CodeFormer and cloud inference
+                            via Replicate API. Streamlit-powered interactive interface.
+                        </p>
+                        <div class="project-tags">
+                            <span>Streamlit</span>
+                            <span>Replicate API</span>
+                            <span>CodeFormer</span>
+                            <span>Python</span>
+                        </div>
+                    </article>
+
+                    <article class="project-card glass-card reveal" id="project-essenyemek">
+                        <div class="project-header">
+                            <span class="project-icon" aria-hidden="true">🍔</span>
+                            <div class="project-links">
+                                <a
+                                    href="https://github.com/esN2k/EssenYemek"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    data-i18n-aria-label="projects.essenyemek.linkLabel"
+                                    aria-label="Open EssenYemek on GitHub"
+                                >
+                                    <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                        <h3 class="project-title" data-i18n="projects.essenyemek.title">EssenYemek</h3>
+                        <p class="project-desc" data-i18n="projects.essenyemek.description">
+                            Cross-platform food delivery application for a live business, shipped to iOS, Android, and Web.
+                            Built with Flutter/Dart with real-time order tracking.
+                        </p>
+                        <div class="project-tags">
+                            <span>Flutter</span>
+                            <span>Dart</span>
+                            <span>iOS</span>
+                            <span>Android</span>
+                            <span>Web</span>
+                        </div>
+                    </article>
+
+                    <article class="project-card glass-card reveal" id="project-biartbiportal">
+                        <div class="project-header">
+                            <span class="project-icon" aria-hidden="true">📊</span>
+                            <div class="project-links">
+                                <a
+                                    href="https://github.com/esN2k/BiartBiPortal-Temiz"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    data-i18n-aria-label="projects.biportal.linkLabel"
+                                    aria-label="Open BiartBiPortal on GitHub"
+                                >
+                                    <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                        <h3 class="project-title" data-i18n="projects.biportal.title">BiartBiPortal</h3>
+                        <p class="project-desc" data-i18n="projects.biportal.description">
+                            Enterprise business intelligence portal with role-based access control, operational metrics
+                            dashboards, and analytical reporting.
+                        </p>
+                        <div class="project-tags">
+                            <span>C#</span>
+                            <span>.NET</span>
+                            <span>RBAC</span>
+                            <span>Power BI</span>
+                            <span>SQL</span>
+                        </div>
+                    </article>
+
+                    <article class="project-card glass-card reveal" id="project-vbds">
+                        <div class="project-header">
+                            <span class="project-icon" aria-hidden="true">📈</span>
+                            <div class="project-links">
+                                <a
+                                    href="https://github.com/esN2k/VB_DS"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    data-i18n-aria-label="projects.vbds.linkLabel"
+                                    aria-label="Open VB_DS on GitHub"
+                                >
+                                    <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                        <h3 class="project-title" data-i18n="projects.vbds.title">VB_DS</h3>
+                        <p class="project-desc" data-i18n="projects.vbds.description">
+                            End-to-end data transformation pipelines for missing data imputation and exploratory data analysis
+                            using Pandas, NumPy, and Jupyter Notebooks.
+                        </p>
+                        <div class="project-tags">
+                            <span>Pandas</span>
+                            <span>NumPy</span>
+                            <span>Jupyter</span>
+                            <span>EDA</span>
+                        </div>
+                    </article>
+
+                    <article class="project-card glass-card reveal" id="project-kavurma">
+                        <div class="project-header">
+                            <span class="project-icon" aria-hidden="true">🏭</span>
+                            <div class="project-links">
+                                <a
+                                    href="https://github.com/esN2k/KAVURMA"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    data-i18n-aria-label="projects.kavurma.linkLabel"
+                                    aria-label="Open KAVURMA Corporate Website on GitHub"
+                                >
+                                    <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                        <h3 class="project-title" data-i18n="projects.kavurma.title">KAVURMA Corporate Website</h3>
+                        <p class="project-desc" data-i18n="projects.kavurma.description">
+                            SEO-optimized corporate B2B website for an industrial machinery company, designed to boost export
+                            visibility and international client acquisition.
+                        </p>
+                        <div class="project-tags">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
+                            <span>SEO</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="section">
+            <div class="container">
+                <h2 class="section-title">
+                    <span class="section-number">05.</span>
+                    <span data-i18n="sections.education">Education &amp; Certifications</span>
+                </h2>
+
+                <div class="education-grid">
+                    <div class="education-card glass-card reveal">
+                        <div class="edu-icon" aria-hidden="true">🎓</div>
+                        <h3 data-i18n="education.degree.title">B.S. Computer Engineering</h3>
+                        <span class="edu-school" data-i18n="education.degree.school">Selçuk University — Konya, Turkey</span>
+                        <span class="edu-date" data-i18n="education.degree.date">Expected Graduation: June 2026</span>
+                        <p data-i18n="education.degree.description">
+                            GPA: 3.0/4.0 — Thesis: Selçuk AI Assistant (Multilingual RAG Chatbot)
+                        </p>
+                    </div>
+
+                    <div class="education-card glass-card reveal">
+                        <div class="edu-icon" aria-hidden="true">🇨🇦</div>
+                        <h3 data-i18n="education.canada.title">St. Giles Summer Camp</h3>
+                        <span class="edu-school" data-i18n="education.canada.school">St. Andrew's College — Ontario, Canada</span>
+                        <span class="edu-date" data-i18n="education.canada.date">Summer 2018</span>
+                        <p data-i18n="education.canada.description">
+                            Certified C2 mastery level language education and bilingual immersion
+                        </p>
+                    </div>
+
+                    <div class="education-card glass-card reveal">
+                        <div class="edu-icon" aria-hidden="true">🇬🇧</div>
+                        <h3 data-i18n="education.uk.title">St. Giles Summer Camp</h3>
+                        <span class="edu-school" data-i18n="education.uk.school">University of Nottingham — Nottingham, UK</span>
+                        <span class="edu-date" data-i18n="education.uk.date">Summer 2017</span>
+                        <p data-i18n="education.uk.description">
+                            Certified C1 advanced level language education — GPA: 4.0
+                        </p>
+                    </div>
+                </div>
+
+                <div class="certs-row reveal">
+                    <div class="cert-badge">
+                        <span class="cert-score">92/100</span>
+                        <span class="cert-name" data-i18n="education.certificates.yokdil.name">YÖKDİL Academic English</span>
+                        <span class="cert-detail" data-i18n="education.certificates.yokdil.detail">Grade A+ — C2 Mastery</span>
+                    </div>
+
+                    <div class="cert-badge">
+                        <span class="cert-score">C2</span>
+                        <span class="cert-name" data-i18n="education.certificates.efset.name">EF SET English Certificate</span>
+                        <span class="cert-detail" data-i18n="education.certificates.efset.detail">Proficient Level</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <div class="container">
+                <h2 class="section-title">
+                    <span class="section-number">06.</span>
+                    <span data-i18n="sections.contact">Get in Touch</span>
+                </h2>
+
+                <div class="contact-content reveal">
+                    <p class="contact-lead" data-i18n-html="contact.lead">
+                        I'm currently looking for <strong>remote opportunities</strong> in software engineering, AI, and
+                        bilingual roles. Let's build something great together.
+                    </p>
+
+                    <div class="contact-grid">
+                        <a href="mailto:dodikbalaman@gmail.com" class="contact-card glass-card">
+                            <span class="contact-icon" aria-hidden="true">✉️</span>
+                            <span class="contact-label" data-i18n="contact.labels.email">Email</span>
+                            <span class="contact-value">dodikbalaman@gmail.com</span>
+                        </a>
+
+                        <a href="https://linkedin.com/in/esn2k" target="_blank" rel="noopener noreferrer" class="contact-card glass-card">
+                            <span class="contact-icon" aria-hidden="true">💼</span>
+                            <span class="contact-label" data-i18n="contact.labels.linkedin">LinkedIn</span>
+                            <span class="contact-value">linkedin.com/in/esn2k</span>
+                        </a>
+
+                        <a href="https://github.com/esN2k" target="_blank" rel="noopener noreferrer" class="contact-card glass-card">
+                            <span class="contact-icon" aria-hidden="true">🐙</span>
+                            <span class="contact-label" data-i18n="contact.labels.github">GitHub</span>
+                            <span class="contact-value">github.com/esN2k</span>
+                        </a>
+
+                        <a href="tel:+905424081102" class="contact-card glass-card">
+                            <span class="contact-icon" aria-hidden="true">📱</span>
+                            <span class="contact-label" data-i18n="contact.labels.phone">Phone</span>
+                            <span class="contact-value">+90 (542) 408 1102</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p data-i18n-html="footer.credit">Designed &amp; Built by <strong>Doğukan Balaman</strong> — 2026</p>
+        </div>
+    </footer>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
