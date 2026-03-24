@@ -115,8 +115,8 @@ const translations = {
                 company: 'Bi-Art (Remote)',
                 date: 'Oct 2025 — Jan 2026',
                 bullets: [
-                    'Created MSSQL analytical queries and interactive <strong>Power BI dashboards</strong>',
-                    'Supported business intelligence and data warehouse operations in a remote environment',
+                    'Conducted daily SQL and Power BI analysis, supported <strong>Data Warehouse workflows</strong>, and generated weekly metrics reports',
+                    'Developed and presented detailed <strong>technical documentation</strong> and stakeholder-facing analytical deliverables',
                 ],
             },
             export: {
@@ -334,8 +334,8 @@ const translations = {
                 company: 'Bi-Art (Uzaktan)',
                 date: 'Eki 2025 — Oca 2026',
                 bullets: [
-                    'MSSQL analitik sorguları ve etkileşimli <strong>Power BI panelleri</strong> geliştirdim',
-                    'Uzaktan çalışma ortamında iş zekası ve veri ambarı operasyonlarını destekledim',
+                    'Günlük SQL ve Power BI analizleri yaparak <strong>Veri Ambarı iş akışlarını</strong> destekledim ve haftalık metrik raporları oluşturdum',
+                    'Detaylı <strong>teknik dokümantasyon</strong> ve paydaşlara yönelik analitik çıktılar hazırladım',
                 ],
             },
             export: {
@@ -456,6 +456,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initMobileMenu();
     initScrollReveal();
     initStatCounters();
+    initParticleNetwork();
     applyLanguage(state.lang, { persist: false });
 
     if (typeof prefersReducedMotion.addEventListener === 'function') {
@@ -586,7 +587,7 @@ function updateLanguageQuery(lang) {
 }
 
 function getLocalizedSiteUrl(lang) {
-    return lang === 'tr' ? 'https://esn2k.github.io/?lang=tr' : 'https://esn2k.github.io/';
+    return lang === 'tr' ? 'https://esn2k.engineer/?lang=tr' : 'https://esn2k.engineer/';
 }
 
 function restartTypingEffect() {
@@ -614,6 +615,11 @@ function restartTypingEffect() {
     let isDeleting = true;
     const token = state.typingToken;
 
+    const triggerGlitch = () => {
+        roleElement.classList.add('typing-glitch');
+        setTimeout(() => roleElement.classList.remove('typing-glitch'), 150);
+    };
+
     const step = () => {
         if (token !== state.typingToken) return;
 
@@ -627,21 +633,22 @@ function restartTypingEffect() {
 
         roleElement.textContent = currentRole.slice(0, charIndex);
 
-        let delay = isDeleting ? 50 : 90;
+        let delay = isDeleting ? 45 : 85;
 
         if (isDeleting && charIndex === 0) {
             roleIndex = (roleIndex + 1) % roles.length;
             isDeleting = false;
-            delay = 350;
+            delay = 400;
+            triggerGlitch();
         } else if (!isDeleting && charIndex === currentRole.length) {
             isDeleting = true;
-            delay = 1800;
+            delay = 2000;
         }
 
         state.typingTimeoutId = window.setTimeout(step, delay);
     };
 
-    state.typingTimeoutId = window.setTimeout(step, 1800);
+    state.typingTimeoutId = window.setTimeout(step, 2000);
 }
 
 function initScrollReveal() {
@@ -828,4 +835,134 @@ function animateCounter(element, target) {
     };
 
     window.requestAnimationFrame(update);
+}
+
+function initParticleNetwork() {
+    const canvas = document.getElementById('heroParticles');
+    if (!canvas || prefersReducedMotion.matches) return;
+
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    let animationId = null;
+    let isVisible = true;
+
+    const config = {
+        particleCount: 60,
+        particleSize: { min: 1.5, max: 3 },
+        speed: { min: 0.15, max: 0.4 },
+        connectionDistance: 150,
+        colors: {
+            purple: 'rgba(147, 51, 234, ',
+            cyan: 'rgba(6, 182, 212, ',
+            gold: 'rgba(245, 158, 11, '
+        }
+    };
+
+    function resize() {
+        const rect = canvas.parentElement.getBoundingClientRect();
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        canvas.width = rect.width * dpr;
+        canvas.height = rect.height * dpr;
+        canvas.style.width = rect.width + 'px';
+        canvas.style.height = rect.height + 'px';
+        ctx.scale(dpr, dpr);
+        initParticles(rect.width, rect.height);
+    }
+
+    function initParticles(width, height) {
+        particles = [];
+        const count = Math.min(config.particleCount, Math.floor((width * height) / 15000));
+        
+        for (let i = 0; i < count; i++) {
+            const colorKeys = Object.keys(config.colors);
+            const colorKey = colorKeys[Math.floor(Math.random() * colorKeys.length)];
+            
+            particles.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                vx: (Math.random() - 0.5) * config.speed.max * 2,
+                vy: (Math.random() - 0.5) * config.speed.max * 2,
+                size: config.particleSize.min + Math.random() * (config.particleSize.max - config.particleSize.min),
+                color: config.colors[colorKey],
+                pulse: Math.random() * Math.PI * 2,
+                pulseSpeed: 0.02 + Math.random() * 0.03
+            });
+        }
+    }
+
+    function draw() {
+        if (!isVisible) return;
+        
+        const width = canvas.width / (Math.min(window.devicePixelRatio || 1, 2));
+        const height = canvas.height / (Math.min(window.devicePixelRatio || 1, 2));
+        
+        ctx.clearRect(0, 0, width, height);
+
+        for (let i = 0; i < particles.length; i++) {
+            const p = particles[i];
+            
+            p.x += p.vx;
+            p.y += p.vy;
+            p.pulse += p.pulseSpeed;
+            
+            if (p.x < 0 || p.x > width) p.vx *= -1;
+            if (p.y < 0 || p.y > height) p.vy *= -1;
+            
+            p.x = Math.max(0, Math.min(width, p.x));
+            p.y = Math.max(0, Math.min(height, p.y));
+
+            for (let j = i + 1; j < particles.length; j++) {
+                const p2 = particles[j];
+                const dx = p.x - p2.x;
+                const dy = p.y - p2.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+
+                if (dist < config.connectionDistance) {
+                    const alpha = (1 - dist / config.connectionDistance) * 0.25;
+                    ctx.beginPath();
+                    ctx.moveTo(p.x, p.y);
+                    ctx.lineTo(p2.x, p2.y);
+                    ctx.strokeStyle = p.color + alpha + ')';
+                    ctx.lineWidth = 0.5;
+                    ctx.stroke();
+                }
+            }
+
+            const pulseAlpha = 0.4 + Math.sin(p.pulse) * 0.2;
+            const pulseSize = p.size * (1 + Math.sin(p.pulse) * 0.15);
+            
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, pulseSize + 2, 0, Math.PI * 2);
+            ctx.fillStyle = p.color + (pulseAlpha * 0.3) + ')';
+            ctx.fill();
+            
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, pulseSize, 0, Math.PI * 2);
+            ctx.fillStyle = p.color + pulseAlpha + ')';
+            ctx.fill();
+        }
+
+        animationId = requestAnimationFrame(draw);
+    }
+
+    const visibilityObserver = new IntersectionObserver((entries) => {
+        isVisible = entries[0].isIntersecting;
+        if (isVisible && !animationId) {
+            draw();
+        } else if (!isVisible && animationId) {
+            cancelAnimationFrame(animationId);
+            animationId = null;
+        }
+    }, { threshold: 0 });
+
+    visibilityObserver.observe(canvas);
+
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(resize, 150);
+    }, { passive: true });
+
+    resize();
+    draw();
 }
