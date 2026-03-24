@@ -1021,7 +1021,7 @@ strong { color: var(--text-primary); font-weight: 600; }
 }
 
 .education-icon {
-    font-size: 2rem;
+    font-size: 2.5rem;
     flex-shrink: 0;
 }
 
@@ -1067,7 +1067,7 @@ strong { color: var(--text-primary); font-weight: 600; }
 
 .certs-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 16px;
 }
 
