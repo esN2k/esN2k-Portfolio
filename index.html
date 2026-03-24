@@ -188,8 +188,8 @@
                     <span data-i18n="sections.about">About Me</span>
                 </h2>
 
-                <div class="about-grid">
-                    <div class="about-image-wrapper reveal">
+                <div class="bento-grid bento-about">
+                    <div class="bento-item bento-image reveal">
                         <div class="about-image-frame">
                             <img
                                 src="assets/profile.jpg"
@@ -205,36 +205,41 @@
                         <div class="about-image-decoration" aria-hidden="true"></div>
                     </div>
 
-                    <div class="about-text reveal">
+                    <div class="bento-item bento-bio glass-card reveal">
                         <p data-i18n-html="about.p1">
                             I'm a <strong>Computer Engineering</strong> senior at Selçuk University with a passion for
                             building systems that think. My journey spans from <strong>AI-powered RAG chatbots</strong> to
                             <strong>cross-platform mobile apps</strong> and <strong>enterprise analytics portals</strong>.
                         </p>
-
                         <p data-i18n-html="about.p2">
                             What sets me apart? I'm <strong>natively bilingual</strong> with verified C2 English mastery
                             (YÖKDİL 92/100, EF SET C2), plus immersive study-abroad experience in the
                             <span class="flag">🇬🇧</span> UK and <span class="flag">🇨🇦</span> Canada.
                         </p>
+                    </div>
 
+                    <div class="bento-item bento-thesis glass-card reveal">
+                        <div class="bento-icon" aria-hidden="true">🎓</div>
+                        <h3>Current Focus</h3>
                         <p data-i18n-html="about.p3">
                             Currently, I'm building my thesis project, a <strong>multilingual RAG chatbot</strong> using
                             LangChain, FAISS, and Ollama, while coordinating operations across 12 branches in my current role.
                         </p>
+                    </div>
 
-                        <div class="about-languages">
-                            <div class="lang-card">
-                                <span class="lang-flag">🇹🇷</span>
-                                <span class="lang-name" data-i18n="about.languages.turkish.name">Turkish</span>
-                                <span class="lang-level" data-i18n="about.languages.turkish.level">Native</span>
-                            </div>
+                    <div class="bento-item bento-lang glass-card reveal">
+                        <div class="lang-card">
+                            <span class="lang-flag">🇹🇷</span>
+                            <span class="lang-name" data-i18n="about.languages.turkish.name">Turkish</span>
+                            <span class="lang-level" data-i18n="about.languages.turkish.level">Native</span>
+                        </div>
+                    </div>
 
-                            <div class="lang-card">
-                                <span class="lang-flag">🇬🇧</span>
-                                <span class="lang-name" data-i18n="about.languages.english.name">English</span>
-                                <span class="lang-level" data-i18n="about.languages.english.level">C2 Mastery</span>
-                            </div>
+                    <div class="bento-item bento-lang glass-card reveal">
+                        <div class="lang-card">
+                            <span class="lang-flag">🇬🇧</span>
+                            <span class="lang-name" data-i18n="about.languages.english.name">English</span>
+                            <span class="lang-level" data-i18n="about.languages.english.level">C2 Mastery</span>
                         </div>
                     </div>
                 </div>
@@ -248,8 +253,8 @@
                     <span data-i18n="sections.skills">Skills &amp; Tools</span>
                 </h2>
 
-                <div class="skills-grid">
-                    <div class="skill-category reveal">
+                <div class="bento-grid bento-skills">
+                    <div class="bento-item skill-category skill-brain glass-card reveal" data-accent="purple">
                         <div class="skill-icon" aria-hidden="true">🧠</div>
                         <h3 data-i18n="skills.categories.brain">The Brain — AI & ML</h3>
                         <div class="skill-tags">
@@ -266,7 +271,7 @@
                         </div>
                     </div>
 
-                    <div class="skill-category reveal">
+                    <div class="bento-item skill-category skill-hands glass-card reveal" data-accent="cyan">
                         <div class="skill-icon" aria-hidden="true">⚙️</div>
                         <h3 data-i18n="skills.categories.hands">The Hands — Dev/Ops</h3>
                         <div class="skill-tags">
@@ -288,7 +293,7 @@
                         </div>
                     </div>
 
-                    <div class="skill-category reveal">
+                    <div class="bento-item skill-category skill-voice glass-card reveal" data-accent="gold">
                         <div class="skill-icon" aria-hidden="true">🗣️</div>
                         <h3 data-i18n="skills.categories.voice">The Voice — C2 English</h3>
                         <div class="skill-tags">
