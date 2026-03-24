@@ -67,7 +67,17 @@
     </script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="loading">
+    <!-- Page Loader -->
+    <div class="page-loader" id="pageLoader">
+        <div class="loader-content">
+            <img src="assets/logo.png" alt="" class="loader-logo" aria-hidden="true">
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+        </div>
+    </div>
+
     <a href="#main-content" class="skip-link" data-i18n="skip.link">Skip to content</a>
 
     <nav id="navbar" aria-label="Primary">
@@ -126,18 +136,18 @@
             </div>
 
             <div class="hero-content">
-                <div class="hero-logo-wrapper">
+                <div class="hero-logo-wrapper hero-enter hero-enter-delay-1">
                     <img src="assets/logo-full.png" alt="Doğukan Balaman Logo" class="hero-logo">
                 </div>
 
-                <div class="hero-badge" data-i18n="hero.badge">Available for Work</div>
+                <div class="hero-badge hero-enter hero-enter-delay-2" data-i18n="hero.badge">Available for Work</div>
 
-                <h1>
+                <h1 class="hero-enter hero-enter-delay-3">
                     <span class="hero-greeting" data-i18n="hero.greeting">Hi, I'm</span>
                     <span class="hero-name" data-i18n="hero.name">Doğukan Balaman</span>
                 </h1>
 
-                <div class="hero-role-wrapper">
+                <div class="hero-role-wrapper hero-enter hero-enter-delay-4">
                     <span class="hero-role-prefix" data-i18n="hero.rolePrefix">I build</span>
                     <span class="sr-only" id="heroRoleSummary" data-i18n="hero.roleSummary">
                         AI-powered systems, cross-platform apps, RAG pipelines, data dashboards, and bilingual solutions.
@@ -146,17 +156,17 @@
                     <span class="hero-cursor" aria-hidden="true">|</span>
                 </div>
 
-                <p class="hero-desc" data-i18n-html="hero.description">
+                <p class="hero-desc hero-enter hero-enter-delay-5" data-i18n-html="hero.description">
                     AI-focused Software Engineer with <strong>C2 English mastery</strong>, crafting intelligent systems from
                     Istanbul for the world.
                 </p>
 
-                <div class="hero-actions">
+                <div class="hero-actions hero-enter hero-enter-delay-6">
                     <a href="#projects" class="btn btn-primary" data-i18n="hero.ctaPrimary">Explore My Intelligence</a>
                     <a href="#contact" class="btn btn-ghost" data-i18n="hero.ctaSecondary">Hire Me</a>
                 </div>
 
-                <div class="hero-stats">
+                <div class="hero-stats hero-enter hero-enter-delay-6">
                     <div class="stat">
                         <span class="stat-value">
                             <span class="stat-number" data-target="30">0</span>

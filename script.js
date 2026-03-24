@@ -451,6 +451,7 @@ const state = {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
+    initPageLoader();
     initLanguageControls();
     initNavbar();
     initMobileMenu();
@@ -464,6 +465,24 @@ document.addEventListener('DOMContentLoaded', () => {
         prefersReducedMotion.addEventListener('change', restartTypingEffect);
     }
 });
+
+function initPageLoader() {
+    const loader = document.getElementById('pageLoader');
+    const heroElements = document.querySelectorAll('.hero-enter');
+    
+    // Hide loader after animation completes
+    setTimeout(() => {
+        if (loader) {
+            loader.classList.add('hidden');
+            document.body.classList.remove('loading');
+        }
+        
+        // Trigger hero entrance animations
+        setTimeout(() => {
+            heroElements.forEach(el => el.classList.add('visible'));
+        }, 100);
+    }, 1600);
+}
 
 function getInitialLang() {
     return SUPPORTED_LANGS.includes(window.__INITIAL_SITE_LANG__) ? window.__INITIAL_SITE_LANG__ : 'en';
