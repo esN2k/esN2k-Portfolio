@@ -249,6 +249,48 @@ button:focus-visible {
     contain-intrinsic-size: 1px 900px;
 }
 
+.section-bg {
+    overflow: hidden;
+}
+
+.section-glow {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.section-glow-left {
+    top: 20%;
+    left: -150px;
+    background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+}
+
+.section-glow-right {
+    top: 30%;
+    right: -150px;
+    background: linear-gradient(135deg, var(--accent-2), var(--accent-3));
+}
+
+.section-glow-center {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, var(--accent-1) 0%, var(--accent-2) 50%, transparent 70%);
+    width: 600px;
+    height: 600px;
+    opacity: 0.12;
+}
+
+.section-bg .container {
+    position: relative;
+    z-index: 1;
+}
+
 .section-title {
     display: flex;
     align-items: center;
@@ -300,9 +342,23 @@ button:focus-visible {
 }
 
 .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
     font-size: 1.5rem;
     font-weight: 800;
     letter-spacing: -0.02em;
+}
+
+.nav-logo-img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+.nav-logo-text {
+    display: inline;
 }
 
 .nav-logo .accent {
@@ -371,11 +427,13 @@ button:focus-visible {
 }
 
 .nav-cta {
-    padding: 8px 20px;
+    padding: 10px 24px;
     color: #fff !important;
     background: var(--gradient-primary) !important;
     border-radius: var(--radius-full);
     font-weight: 600 !important;
+    font-size: 0.875rem;
+    white-space: nowrap;
     box-shadow: 0 2px 12px rgba(147, 51, 234, 0.3);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -529,6 +587,29 @@ button:focus-visible {
     width: min(1100px, calc(100% - 48px));
     margin: 0 auto;
     padding-top: 100px;
+}
+
+.hero-logo-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 24px;
+}
+
+.hero-logo {
+    width: 180px;
+    height: auto;
+    filter: drop-shadow(0 0 30px rgba(147, 51, 234, 0.4))
+            drop-shadow(0 0 60px rgba(147, 51, 234, 0.2));
+    animation: hero-logo-float 6s ease-in-out infinite;
+}
+
+@keyframes hero-logo-float {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        transform: translateY(-8px) scale(1.02);
+    }
 }
 
 .hero-badge {
@@ -1617,7 +1698,7 @@ footer p {
     }
 
     .bento-about .bento-image {
-        max-width: 280px;
+        max-width: 340px;
         margin: 0 auto;
         aspect-ratio: 3 / 4;
     }
