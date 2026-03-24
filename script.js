@@ -100,6 +100,15 @@ const translations = {
             },
         },
         experience: {
+            bi: {
+                role: 'BI & Data Engineering Intern',
+                company: 'Bi-Art (Remote)',
+                date: 'Oct 2025 — Jan 2026',
+                bullets: [
+                    'Conducted daily SQL and Power BI analysis, supported <strong>Data Warehouse workflows</strong>, and generated weekly metrics reports',
+                    'Developed and presented detailed <strong>technical documentation</strong> and stakeholder-facing analytical deliverables',
+                ],
+            },
             logistics: {
                 role: 'Logistics Coordinator',
                 company: 'Ser Yöresel Dry Foods',
@@ -108,15 +117,6 @@ const translations = {
                     'Coordinating inventory, procurement, and warehouse operations across <strong>12 branches</strong>',
                     'Built internal inventory platform with <strong>55% faster fulfillment</strong> and <strong>60% fewer shortages</strong>',
                     'Applied data analytics for KPI monitoring, driving a <strong>35% efficiency boost</strong> and <strong>30% cost reduction</strong>',
-                ],
-            },
-            bi: {
-                role: 'BI & Data Engineering Intern',
-                company: 'Bi-Art (Remote)',
-                date: 'Oct 2025 — Jan 2026',
-                bullets: [
-                    'Conducted daily SQL and Power BI analysis, supported <strong>Data Warehouse workflows</strong>, and generated weekly metrics reports',
-                    'Developed and presented detailed <strong>technical documentation</strong> and stakeholder-facing analytical deliverables',
                 ],
             },
             export: {
@@ -319,6 +319,15 @@ const translations = {
             },
         },
         experience: {
+            bi: {
+                role: 'BI ve Veri Mühendisliği Stajyeri',
+                company: 'Bi-Art (Uzaktan)',
+                date: 'Eki 2025 — Oca 2026',
+                bullets: [
+                    'Günlük SQL ve Power BI analizleri yaparak <strong>Veri Ambarı iş akışlarını</strong> destekledim ve haftalık metrik raporları oluşturdum',
+                    'Detaylı <strong>teknik dokümantasyon</strong> ve paydaşlara yönelik analitik çıktılar hazırladım',
+                ],
+            },
             logistics: {
                 role: 'Lojistik Koordinatörü',
                 company: 'Ser Yöresel Dry Foods',
@@ -327,15 +336,6 @@ const translations = {
                     '<strong>12 şube</strong> genelinde stok, satın alma ve depo operasyonlarını koordine ediyorum',
                     'İç envanter platformu geliştirerek <strong>%55 daha hızlı sevkiyat</strong> ve <strong>%60 daha az stok sorunu</strong> sağladım',
                     'KPI takibi için veri analitiği uygulayarak <strong>%35 verimlilik artışı</strong> ve <strong>%30 maliyet düşüşü</strong> elde ettim',
-                ],
-            },
-            bi: {
-                role: 'BI ve Veri Mühendisliği Stajyeri',
-                company: 'Bi-Art (Uzaktan)',
-                date: 'Eki 2025 — Oca 2026',
-                bullets: [
-                    'Günlük SQL ve Power BI analizleri yaparak <strong>Veri Ambarı iş akışlarını</strong> destekledim ve haftalık metrik raporları oluşturdum',
-                    'Detaylı <strong>teknik dokümantasyon</strong> ve paydaşlara yönelik analitik çıktılar hazırladım',
                 ],
             },
             export: {
