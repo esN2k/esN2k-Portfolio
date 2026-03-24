@@ -469,19 +469,19 @@ document.addEventListener('DOMContentLoaded', () => {
 function initPageLoader() {
     const loader = document.getElementById('pageLoader');
     const heroElements = document.querySelectorAll('.hero-enter');
-    
-    // Hide loader after animation completes
+
+    // Hide loader after animation completes with better timing
     setTimeout(() => {
         if (loader) {
             loader.classList.add('hidden');
             document.body.classList.remove('loading');
         }
-        
-        // Trigger hero entrance animations
+
+        // Trigger hero entrance animations with staggered delay
         setTimeout(() => {
             heroElements.forEach(el => el.classList.add('visible'));
-        }, 100);
-    }, 1600);
+        }, 200);
+    }, 2200); // Increased from 1600ms to 2200ms for smoother experience
 }
 
 function getInitialLang() {
@@ -574,7 +574,7 @@ function setMetaContent(selector, value) {
 }
 
 function initLanguageControls() {
-    document.querySelectorAll('.lang-switch').forEach((button) => {
+    document.querySelectorAll('.lang-btn').forEach((button) => {
         button.addEventListener('click', () => {
             const nextLang = button.dataset.lang;
             if (!SUPPORTED_LANGS.includes(nextLang) || nextLang === state.lang) {
@@ -588,7 +588,7 @@ function initLanguageControls() {
 }
 
 function updateLanguageButtons() {
-    document.querySelectorAll('.lang-switch').forEach((button) => {
+    document.querySelectorAll('.lang-btn').forEach((button) => {
         const isActive = button.dataset.lang === state.lang;
         button.classList.toggle('active', isActive);
         button.setAttribute('aria-pressed', String(isActive));
