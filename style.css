@@ -427,12 +427,12 @@ button:focus-visible {
 }
 
 .nav-cta {
-    padding: 12px 28px;
+    padding: 10px 20px;
     color: #fff !important;
     background: var(--gradient-primary) !important;
     border-radius: var(--radius-full);
     font-weight: 600 !important;
-    font-size: 0.875rem;
+    font-size: 0.8rem;
     white-space: nowrap;
     box-shadow: 0 2px 12px rgba(147, 51, 234, 0.3);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -1015,8 +1015,8 @@ button:focus-visible {
 }
 
 .bento-about {
-    grid-template-columns: 320px 1fr 1fr;
-    grid-template-rows: auto auto;
+    grid-template-columns: minmax(300px, 380px) 1fr 1fr;
+    grid-template-rows: auto auto auto;
     grid-template-areas:
         "image bio bio"
         "image thesis thesis"
@@ -1037,6 +1037,7 @@ button:focus-visible {
     position: relative;
     border-radius: var(--radius-md);
     overflow: hidden;
+    min-height: 400px;
 }
 
 .bento-bio p {
@@ -1747,15 +1748,15 @@ footer p {
         top: 0;
         right: 0;
         bottom: 0;
-        width: min(85vw, 360px);
-        padding: 100px 32px 40px;
+        width: 100vw;
+        padding: 120px 40px 60px;
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
         justify-content: flex-start;
-        gap: 32px;
-        background: rgba(10, 10, 15, 0.97);
-        border-left: 1px solid var(--border-color);
-        backdrop-filter: blur(20px);
+        gap: 40px;
+        background: rgba(5, 5, 8, 0.98);
+        border-left: none;
+        backdrop-filter: blur(24px);
         overflow-y: auto;
     }
 
@@ -1765,14 +1766,15 @@ footer p {
 
     .nav-links {
         flex-direction: column;
-        align-items: flex-start;
-        gap: 28px;
+        align-items: center;
+        gap: 32px;
         width: 100%;
     }
 
     .nav-links a {
-        font-size: 1.1rem;
-        padding: 8px 0;
+        font-size: 1.4rem;
+        padding: 12px 0;
+        font-weight: 500;
     }
 
     .nav-links a::before {
@@ -1780,22 +1782,24 @@ footer p {
     }
 
     .nav-cta {
-        padding: 14px 32px;
-        font-size: 1rem;
-        width: 100%;
+        padding: 16px 48px;
+        font-size: 1.1rem;
+        width: auto;
+        min-width: 200px;
         text-align: center;
         display: block;
     }
 
     .lang-switcher {
-        width: 100%;
+        width: auto;
+        min-width: 180px;
         justify-content: center;
     }
 
     .lang-switch {
         flex: 1;
-        padding: 10px 16px;
-        font-size: 0.95rem;
+        padding: 12px 20px;
+        font-size: 1rem;
     }
 
     .hero-content {

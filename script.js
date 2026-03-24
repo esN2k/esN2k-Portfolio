@@ -256,7 +256,7 @@ const translations = {
             experience: 'Deneyim',
             projects: 'Öne Çıkan Projeler',
             education: 'Eğitim ve Sertifikalar',
-            contact: 'İletişime Geç',
+            contact: 'İletişim',
         },
         hero: {
             badge: 'Yeni işlere açık',
