@@ -18,10 +18,10 @@
         content="AI-focused Software Engineer with C2 English mastery. Building RAG systems, cross-platform apps, and data pipelines."
     >
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://esn2k.github.io/" id="ogUrlMeta">
+    <meta property="og:url" content="https://esn2k.engineer/" id="ogUrlMeta">
     <meta property="og:site_name" content="Doğukan Balaman Portfolio">
     <meta property="og:locale" content="en_US">
-    <meta property="og:image" content="https://esn2k.github.io/assets/profile.jpg">
+    <meta property="og:image" content="https://esn2k.engineer/assets/profile.jpg">
     <meta property="og:image:alt" content="Portrait of Doğukan Balaman">
 
     <meta name="twitter:card" content="summary_large_image">
@@ -30,12 +30,12 @@
         name="twitter:description"
         content="AI-focused Software Engineer with C2 English mastery. Building RAG systems, cross-platform apps, and data pipelines."
     >
-    <meta name="twitter:image" content="https://esn2k.github.io/assets/profile.jpg">
+    <meta name="twitter:image" content="https://esn2k.engineer/assets/profile.jpg">
 
-    <link rel="canonical" href="https://esn2k.github.io/" id="canonicalLink">
-    <link rel="alternate" hreflang="x-default" href="https://esn2k.github.io/">
-    <link rel="alternate" hreflang="en" href="https://esn2k.github.io/">
-    <link rel="alternate" hreflang="tr" href="https://esn2k.github.io/?lang=tr">
+    <link rel="canonical" href="https://esn2k.engineer/" id="canonicalLink">
+    <link rel="alternate" hreflang="x-default" href="https://esn2k.engineer/">
+    <link rel="alternate" hreflang="en" href="https://esn2k.engineer/">
+    <link rel="alternate" hreflang="tr" href="https://esn2k.engineer/?lang=tr">
     <link rel="manifest" href="site.webmanifest">
     <link rel="icon" href="favicon.png" type="image/png">
     <link rel="apple-touch-icon" href="icons/Icon-192.png">
@@ -117,6 +117,7 @@
     <main id="main-content">
         <section id="hero">
             <div class="hero-bg" aria-hidden="true">
+                <canvas id="heroParticles"></canvas>
                 <div class="hero-gradient"></div>
                 <div class="hero-grid"></div>
             </div>
@@ -187,8 +188,8 @@
                     <span data-i18n="sections.about">About Me</span>
                 </h2>
 
-                <div class="about-grid">
-                    <div class="about-image-wrapper reveal">
+                <div class="bento-grid bento-about">
+                    <div class="bento-item bento-image reveal">
                         <div class="about-image-frame">
                             <img
                                 src="assets/profile.jpg"
@@ -204,36 +205,41 @@
                         <div class="about-image-decoration" aria-hidden="true"></div>
                     </div>
 
-                    <div class="about-text reveal">
+                    <div class="bento-item bento-bio glass-card reveal">
                         <p data-i18n-html="about.p1">
                             I'm a <strong>Computer Engineering</strong> senior at Selçuk University with a passion for
                             building systems that think. My journey spans from <strong>AI-powered RAG chatbots</strong> to
                             <strong>cross-platform mobile apps</strong> and <strong>enterprise analytics portals</strong>.
                         </p>
-
                         <p data-i18n-html="about.p2">
                             What sets me apart? I'm <strong>natively bilingual</strong> with verified C2 English mastery
                             (YÖKDİL 92/100, EF SET C2), plus immersive study-abroad experience in the
                             <span class="flag">🇬🇧</span> UK and <span class="flag">🇨🇦</span> Canada.
                         </p>
+                    </div>
 
+                    <div class="bento-item bento-thesis glass-card reveal">
+                        <div class="bento-icon" aria-hidden="true">🎓</div>
+                        <h3>Current Focus</h3>
                         <p data-i18n-html="about.p3">
                             Currently, I'm building my thesis project, a <strong>multilingual RAG chatbot</strong> using
                             LangChain, FAISS, and Ollama, while coordinating operations across 12 branches in my current role.
                         </p>
+                    </div>
 
-                        <div class="about-languages">
-                            <div class="lang-card">
-                                <span class="lang-flag">🇹🇷</span>
-                                <span class="lang-name" data-i18n="about.languages.turkish.name">Turkish</span>
-                                <span class="lang-level" data-i18n="about.languages.turkish.level">Native</span>
-                            </div>
+                    <div class="bento-item bento-lang glass-card reveal">
+                        <div class="lang-card">
+                            <span class="lang-flag">🇹🇷</span>
+                            <span class="lang-name" data-i18n="about.languages.turkish.name">Turkish</span>
+                            <span class="lang-level" data-i18n="about.languages.turkish.level">Native</span>
+                        </div>
+                    </div>
 
-                            <div class="lang-card">
-                                <span class="lang-flag">🇬🇧</span>
-                                <span class="lang-name" data-i18n="about.languages.english.name">English</span>
-                                <span class="lang-level" data-i18n="about.languages.english.level">C2 Mastery</span>
-                            </div>
+                    <div class="bento-item bento-lang glass-card reveal">
+                        <div class="lang-card">
+                            <span class="lang-flag">🇬🇧</span>
+                            <span class="lang-name" data-i18n="about.languages.english.name">English</span>
+                            <span class="lang-level" data-i18n="about.languages.english.level">C2 Mastery</span>
                         </div>
                     </div>
                 </div>
@@ -247,8 +253,8 @@
                     <span data-i18n="sections.skills">Skills &amp; Tools</span>
                 </h2>
 
-                <div class="skills-grid">
-                    <div class="skill-category reveal">
+                <div class="bento-grid bento-skills">
+                    <div class="bento-item skill-category skill-brain glass-card reveal" data-accent="purple">
                         <div class="skill-icon" aria-hidden="true">🧠</div>
                         <h3 data-i18n="skills.categories.brain">The Brain — AI & ML</h3>
                         <div class="skill-tags">
@@ -260,10 +266,12 @@
                             <span class="skill-tag">Computer Vision</span>
                             <span class="skill-tag">Prompt Engineering</span>
                             <span class="skill-tag">NLP</span>
+                            <span class="skill-tag">Data Annotation</span>
+                            <span class="skill-tag">Web Scraping</span>
                         </div>
                     </div>
 
-                    <div class="skill-category reveal">
+                    <div class="bento-item skill-category skill-hands glass-card reveal" data-accent="cyan">
                         <div class="skill-icon" aria-hidden="true">⚙️</div>
                         <h3 data-i18n="skills.categories.hands">The Hands — Dev/Ops</h3>
                         <div class="skill-tags">
@@ -272,15 +280,20 @@
                             <span class="skill-tag">FastAPI</span>
                             <span class="skill-tag">C# / .NET</span>
                             <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">HTML / CSS</span>
+                            <span class="skill-tag">SQL</span>
                             <span class="skill-tag">Docker</span>
                             <span class="skill-tag">Git / GitHub</span>
                             <span class="skill-tag">Power BI</span>
                             <span class="skill-tag">MSSQL</span>
+                            <span class="skill-tag">Streamlit</span>
+                            <span class="skill-tag">Pandas</span>
                             <span class="skill-tag">REST APIs</span>
+                            <span class="skill-tag">Linux</span>
                         </div>
                     </div>
 
-                    <div class="skill-category reveal">
+                    <div class="bento-item skill-category skill-voice glass-card reveal" data-accent="gold">
                         <div class="skill-icon" aria-hidden="true">🗣️</div>
                         <h3 data-i18n="skills.categories.voice">The Voice — C2 English</h3>
                         <div class="skill-tags">
@@ -340,10 +353,10 @@
                             <span class="timeline-date" data-i18n="experience.bi.date">Oct 2025 — Jan 2026</span>
                             <ul>
                                 <li data-i18n-html="experience.bi.bullets.0">
-                                    Created MSSQL analytical queries and interactive <strong>Power BI dashboards</strong>
+                                    Conducted daily SQL and Power BI analysis, supported <strong>Data Warehouse workflows</strong>, and generated weekly metrics reports
                                 </li>
                                 <li data-i18n-html="experience.bi.bullets.1">
-                                    Supported business intelligence and data warehouse operations in a remote environment
+                                    Developed and presented detailed <strong>technical documentation</strong> and stakeholder-facing analytical deliverables
                                 </li>
                             </ul>
                         </div>
