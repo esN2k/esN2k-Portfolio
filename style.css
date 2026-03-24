@@ -1688,6 +1688,10 @@ footer p {
         gap: 24px;
     }
 
+    .nav-links a::before {
+        display: none;
+    }
+
     .hero-content {
         padding-top: 96px;
     }
@@ -1720,6 +1724,19 @@ footer p {
         max-width: 220px;
     }
 
+    .bento-item.glass-card {
+        padding: 24px;
+    }
+
+    .skill-tags {
+        gap: 8px;
+    }
+
+    .skill-tag {
+        padding: 6px 12px;
+        font-size: 0.75rem;
+    }
+
     .projects-grid {
         grid-template-columns: 1fr;
     }
@@ -1744,6 +1761,38 @@ footer p {
 
     .timeline-marker::before {
         display: none;
+    }
+
+    #heroParticles {
+        opacity: 0.4;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        width: calc(100% - 32px);
+    }
+
+    .hero-name {
+        font-size: clamp(2.2rem, 10vw, 3rem);
+    }
+
+    .hero-badge {
+        font-size: 0.7rem;
+        padding: 4px 12px;
+    }
+
+    .btn {
+        padding: 12px 24px;
+        font-size: 0.9rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .bento-about .bento-image {
+        max-width: 180px;
     }
 }
 
