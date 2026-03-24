@@ -327,6 +327,7 @@ button:focus-visible {
     font-size: 0.875rem;
     font-weight: 500;
     transition: var(--transition);
+    padding: 4px 0;
 }
 
 .nav-links a:hover,
@@ -343,13 +344,30 @@ button:focus-visible {
     width: 0;
     height: 2px;
     background: var(--gradient-primary);
-    transition: var(--transition);
+    border-radius: 2px;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 0 8px rgba(147, 51, 234, 0.5);
 }
 
 .nav-links a:hover::after,
 .nav-links a.active::after,
 .nav-links a[aria-current='page']::after {
     width: 100%;
+}
+
+.nav-links a::before {
+    content: '';
+    position: absolute;
+    inset: -4px -8px;
+    border-radius: var(--radius-sm);
+    background: rgba(147, 51, 234, 0.1);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.nav-links a:hover::before {
+    opacity: 1;
 }
 
 .nav-cta {
@@ -363,11 +381,14 @@ button:focus-visible {
 }
 
 .nav-cta:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 20px rgba(147, 51, 234, 0.5);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 
+        0 6px 24px rgba(147, 51, 234, 0.5),
+        0 0 40px rgba(147, 51, 234, 0.2);
 }
 
-.nav-cta::after {
+.nav-cta::after,
+.nav-cta::before {
     display: none !important;
 }
 
@@ -1150,7 +1171,7 @@ button:focus-visible {
 
 .timeline {
     position: relative;
-    padding-left: 40px;
+    padding-left: 48px;
 }
 
 .timeline::before {
@@ -1160,12 +1181,26 @@ button:focus-visible {
     top: 0;
     bottom: 0;
     width: 2px;
-    background: linear-gradient(to bottom, var(--accent-1), var(--accent-2), transparent);
+    background: linear-gradient(
+        to bottom,
+        var(--accent-1) 0%,
+        var(--accent-2) 50%,
+        rgba(6, 182, 212, 0.2) 100%
+    );
+    box-shadow: 0 0 12px rgba(147, 51, 234, 0.3);
 }
 
 .timeline-item {
     position: relative;
-    margin-bottom: 40px;
+    margin-bottom: 48px;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.timeline-item.visible {
+    opacity: 1;
+    transform: translateX(0);
 }
 
 .timeline-item:last-child {
@@ -1174,14 +1209,44 @@ button:focus-visible {
 
 .timeline-marker {
     position: absolute;
-    left: -47px;
+    left: -55px;
     top: 36px;
-    width: 14px;
-    height: 14px;
+    width: 16px;
+    height: 16px;
     border: 3px solid var(--bg-primary);
     border-radius: 50%;
     background: var(--accent-1);
-    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.3);
+    box-shadow: 
+        0 0 0 4px rgba(147, 51, 234, 0.2),
+        0 0 20px rgba(147, 51, 234, 0.4);
+    transition: all 0.3s ease;
+}
+
+.timeline-item:hover .timeline-marker {
+    transform: scale(1.3);
+    box-shadow: 
+        0 0 0 6px rgba(147, 51, 234, 0.3),
+        0 0 30px rgba(147, 51, 234, 0.6);
+}
+
+.timeline-marker::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    background: rgba(147, 51, 234, 0.3);
+    animation: marker-pulse 2s ease-in-out infinite;
+}
+
+@keyframes marker-pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+    50% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
 }
 
 .timeline-header {
@@ -1195,6 +1260,11 @@ button:focus-visible {
 .timeline-header h3 {
     font-size: 1.15rem;
     font-weight: 700;
+    transition: color 0.3s ease;
+}
+
+.timeline-item:hover .timeline-header h3 {
+    color: var(--accent-1);
 }
 
 .timeline-company {
@@ -1206,17 +1276,21 @@ button:focus-visible {
 .timeline-date {
     display: inline-block;
     margin-bottom: 16px;
+    padding: 4px 12px;
     color: var(--text-muted);
+    background: rgba(147, 51, 234, 0.1);
+    border-radius: var(--radius-full);
     font-family: var(--font-mono);
-    font-size: 0.8rem;
+    font-size: 0.75rem;
 }
 
 .timeline-content li {
     position: relative;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     padding-left: 20px;
     color: var(--text-secondary);
     font-size: 0.95rem;
+    line-height: 1.6;
 }
 
 .timeline-content li::before {
@@ -1225,6 +1299,11 @@ button:focus-visible {
     left: 0;
     color: var(--accent-1);
     font-weight: 700;
+    transition: transform 0.3s ease;
+}
+
+.timeline-content li:hover::before {
+    transform: translateX(4px);
 }
 
 .projects-grid {
@@ -1492,13 +1571,39 @@ footer p {
 
 .js .reveal {
     opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
+    transform: translateY(40px);
+    transition: 
+        opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .js .reveal.visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+.js .reveal[data-reveal="fade-up"] {
+    transform: translateY(60px);
+}
+
+.js .reveal[data-reveal="fade-left"] {
+    transform: translateX(-40px);
+}
+
+.js .reveal[data-reveal="fade-right"] {
+    transform: translateX(40px);
+}
+
+.js .reveal[data-reveal="scale"] {
+    transform: scale(0.9);
+}
+
+.js .reveal[data-reveal="fade-up"].visible,
+.js .reveal[data-reveal="fade-left"].visible,
+.js .reveal[data-reveal="fade-right"].visible,
+.js .reveal[data-reveal="scale"].visible {
+    opacity: 1;
+    transform: none;
 }
 
 @media (max-width: 980px) {
@@ -1628,11 +1733,17 @@ footer p {
     }
 
     .timeline {
-        padding-left: 30px;
+        padding-left: 36px;
     }
 
     .timeline-marker {
-        left: -37px;
+        left: -43px;
+        width: 14px;
+        height: 14px;
+    }
+
+    .timeline-marker::before {
+        display: none;
     }
 }
 

@@ -455,6 +455,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initNavbar();
     initMobileMenu();
     initScrollReveal();
+    initTimelineReveal();
     initStatCounters();
     initParticleNetwork();
     applyLanguage(state.lang, { persist: false });
@@ -669,14 +670,57 @@ function initScrollReveal() {
             });
         },
         {
-            threshold: 0.1,
+            threshold: 0.15,
+            rootMargin: '0px 0px -80px 0px',
+        },
+    );
+
+    const sectionMap = new Map();
+    
+    elements.forEach((element) => {
+        const section = element.closest('section');
+        const sectionId = section ? section.id : 'default';
+        
+        if (!sectionMap.has(sectionId)) {
+            sectionMap.set(sectionId, []);
+        }
+        sectionMap.get(sectionId).push(element);
+    });
+
+    sectionMap.forEach((sectionElements) => {
+        sectionElements.forEach((element, index) => {
+            element.style.transitionDelay = `${index * 100}ms`;
+            observer.observe(element);
+        });
+    });
+}
+
+function initTimelineReveal() {
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    if (!timelineItems.length) return;
+
+    if (prefersReducedMotion.matches || !('IntersectionObserver' in window)) {
+        timelineItems.forEach((item) => item.classList.add('visible'));
+        return;
+    }
+
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            });
+        },
+        {
+            threshold: 0.2,
             rootMargin: '0px 0px -50px 0px',
         },
     );
 
-    elements.forEach((element, index) => {
-        element.style.transitionDelay = `${(index % 4) * 80}ms`;
-        observer.observe(element);
+    timelineItems.forEach((item, index) => {
+        item.style.transitionDelay = `${index * 150}ms`;
+        observer.observe(item);
     });
 }
 
