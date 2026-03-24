@@ -4,3 +4,6 @@ Thumbs.db
 .idea/
 .vscode/
 *.log
+
+# Private sensitive data
+docs/

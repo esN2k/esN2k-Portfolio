@@ -801,14 +801,14 @@ function initNavbar() {
 
 function initMobileMenu() {
     const toggle = document.getElementById('navToggle');
-    const panel = document.getElementById('navPanel');
-    if (!toggle || !panel) return;
+    const menu = document.getElementById('navMenu');
+    if (!toggle || !menu) return;
 
     toggle.addEventListener('click', () => {
         setMenuState(!state.menuOpen);
     });
 
-    panel.querySelectorAll('a').forEach((link) => {
+    menu.querySelectorAll('a').forEach((link) => {
         link.addEventListener('click', () => setMenuState(false));
     });
 
@@ -826,7 +826,7 @@ function initMobileMenu() {
     });
 
     window.addEventListener('resize', () => {
-        if (window.innerWidth > 768) {
+        if (window.innerWidth > 900) {
             setMenuState(false);
         }
     });
@@ -836,11 +836,11 @@ function initMobileMenu() {
 
 function setMenuState(isOpen) {
     const toggle = document.getElementById('navToggle');
-    const panel = document.getElementById('navPanel');
-    if (!toggle || !panel) return;
+    const menu = document.getElementById('navMenu');
+    if (!toggle || !menu) return;
 
     state.menuOpen = isOpen;
-    panel.classList.toggle('open', isOpen);
+    menu.classList.toggle('open', isOpen);
     toggle.classList.toggle('active', isOpen);
     toggle.setAttribute('aria-expanded', String(isOpen));
     document.body.classList.toggle('menu-open', isOpen);
@@ -901,7 +901,7 @@ function animateCounter(element, target) {
 }
 
 function initParticleNetwork() {
-    const canvas = document.getElementById('heroParticles');
+    const canvas = document.getElementById('heroCanvas');
     if (!canvas || prefersReducedMotion.matches) return;
 
     const ctx = canvas.getContext('2d');
