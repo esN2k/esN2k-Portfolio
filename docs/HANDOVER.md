@@ -29,21 +29,29 @@ A personal portfolio website for Doğukan Balaman, an AI-focused Computer Engine
 
 ---
 
-## Current State
+## Current State (Updated 2026-03-29)
 
 ### What Works
-- Page loads at https://esn2k.engineer
-- Bilingual EN/TR language switching
-- Basic section structure (Hero, About, Skills, Experience, Projects, Education, Contact)
-- Responsive layout
-- Page loader animation
-- Scroll reveal animations
+- **Deployment:** Page loads fast at https://esn2k.engineer via GitHub Pages
+- **Typography:** Upgraded to Cabinet Grotesk for a premium Vercel-like aesthetic.
+- **Performance:** 
+  - Profile image converted to WebP.
+  - Critical above-the-fold CSS inlined; secondary CSS loaded asynchronously.
+  - `content-visibility: auto` implemented for off-screen sections.
+  - Canvas background lazy-loaded via IntersectionObserver.
+  - All script tags use the `defer` attribute.
+- **Design & Layout:** 
+  - Glassmorphism UI with a clean, grid-based Bento box approach for skills and projects.
+  - Contact section revamped with interactive "pills" featuring Lucide SVG icons.
+  - Scroll reveal thresholds optimized for seamless mobile/desktop reading.
+- **Functionality:** 
+  - Bilingual EN/TR language switching works flawlessly, closing mobile menus properly on click.
+  - Keyboard accessibility (tab navigation & focus-visible outline) fully restored.
 
-### Known Issues / Incomplete Work
-1. **Mobile menu** - May not be properly styled/functional on all devices
-2. **Contact button alignment** - "Get in Touch" anchor may not scroll to exact position
-3. **Some animations** - Hero entrance animations may need refinement
-4. **Typography** - Using web fonts that may need local hosting for performance
+### Known Issues / Next Steps for Optimization
+1. **Lighthouse Fine-tuning** - Current baseline: Accessibility 96, Performance 81 (local headless). Production scores should be monitored.
+2. **Animation Performance** - The particle canvas is currently disabled on mobile devices (`(hover: none)`) to save battery, but desktop performance can still be monitored.
+3. **Advanced PWA Support** - `site.webmanifest` and service workers can be expanded to allow offline accessibility.
 
 ---
 
@@ -228,12 +236,11 @@ git push origin master
 
 ## Recommendations for Next Agent
 
-1. **Verify all content against resume files** — `docs/resume_en.md` and `docs/resume_tr.md` are the source of truth
-2. **Test on actual mobile devices** — Not just browser dev tools
-3. **Check all links** — Email, LinkedIn, GitHub should all work
-4. **Validate animations** — Page loader, hero entrance, scroll reveals
-5. **Test language switching** — All text should translate properly
-6. **Consider the reference sites** — User wants that level of polish
+1. **Maintain Minimalist Vercel Aesthetic** — Avoid neon glows, gradients on backgrounds, and emojis. Stick to Cabinet Grotesk font and neutral high-contrast color palettes.
+2. **Preserve Performance Targets** — The site currently has tightly optimized LCP and async CSS loading. Be careful not to introduce render-blocking scripts.
+3. **Check all links** — Email, LinkedIn, GitHub should all work (currently implemented with Lucide icons).
+4. **Verify Accessibility** — Whenever you add interactive elements, do NOT use `outline: none;` without providing a `focus-visible` alternative. Wait for Lighthouse audits before pushing.
+5. **Translations** — Any new string addition in HTML must be mapped to both `translations.en` and `translations.tr` in `script.js`.
 
 ---
 
