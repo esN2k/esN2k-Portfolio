@@ -815,7 +815,7 @@ function initNavbar() {
 
 function initMobileMenu() {
     const toggle = document.getElementById('navToggle');
-    const menu = document.getElementById('navMenu') || document.getElementById('navPanel');
+    const menu = document.getElementById('navMenu');
     if (!toggle || !menu) return;
 
     toggle.addEventListener('click', () => {
@@ -827,20 +827,13 @@ function initMobileMenu() {
     });
 
     document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape') {
-            setMenuState(false);
-        }
-    });
-
-    document.addEventListener('click', (event) => {
-        if (!state.menuOpen) return;
-        if (!event.target.closest('#navbar')) {
+        if (event.key === 'Escape' && state.menuOpen) {
             setMenuState(false);
         }
     });
 
     window.addEventListener('resize', () => {
-        if (window.innerWidth > 900) {
+        if (window.innerWidth > 900 && state.menuOpen) {
             setMenuState(false);
         }
     });
@@ -850,14 +843,21 @@ function initMobileMenu() {
 
 function setMenuState(isOpen) {
     const toggle = document.getElementById('navToggle');
-    const menu = document.getElementById('navMenu') || document.getElementById('navPanel');
+    const menu = document.getElementById('navMenu');
     if (!toggle || !menu) return;
 
     state.menuOpen = isOpen;
     menu.classList.toggle('open', isOpen);
     toggle.classList.toggle('active', isOpen);
     toggle.setAttribute('aria-expanded', String(isOpen));
-    document.body.classList.toggle('menu-open', isOpen);
+    
+    // Prevent body scrolling when menu is open on mobile
+    if (isOpen) {
+        document.body.style.overflow = 'hidden';
+    } else {
+        document.body.style.overflow = '';
+    }
+    
     updateNavToggleLabel();
 }
 
@@ -923,11 +923,32 @@ function initParticleNetwork() {
     let animationId = null;
     let isVisible = true;
 
+    // Mouse Interaction setup
+    let mouse = { x: null, y: null, radius: 150 };
+    
+    // Add event listeners for mouse
+    window.addEventListener('mousemove', (event) => {
+        const rect = canvas.getBoundingClientRect();
+        // Check if mouse is within hero section roughly
+        if (event.clientY <= rect.bottom) {
+            mouse.x = event.clientX;
+            mouse.y = event.clientY - rect.top; // Adjust for scroll/position if needed
+        } else {
+            mouse.x = null;
+            mouse.y = null;
+        }
+    });
+    
+    window.addEventListener('mouseout', () => {
+        mouse.x = null;
+        mouse.y = null;
+    });
+
     const config = {
-        particleCount: 60,
-        particleSize: { min: 1.5, max: 3 },
+        particleCount: 80,
+        particleSize: { min: 1.5, max: 3.5 },
         speed: { min: 0.15, max: 0.4 },
-        connectionDistance: 150,
+        connectionDistance: 130,
         colors: {
             purple: 'rgba(147, 51, 234, ',
             cyan: 'rgba(6, 182, 212, ',
@@ -948,7 +969,7 @@ function initParticleNetwork() {
 
     function initParticles(width, height) {
         particles = [];
-        const count = Math.min(config.particleCount, Math.floor((width * height) / 15000));
+        const count = Math.min(config.particleCount, Math.floor((width * height) / 10000));
         
         for (let i = 0; i < count; i++) {
             const colorKeys = Object.keys(config.colors);
@@ -959,6 +980,8 @@ function initParticleNetwork() {
                 y: Math.random() * height,
                 vx: (Math.random() - 0.5) * config.speed.max * 2,
                 vy: (Math.random() - 0.5) * config.speed.max * 2,
+                baseVx: (Math.random() - 0.5) * config.speed.max * 2,
+                baseVy: (Math.random() - 0.5) * config.speed.max * 2,
                 size: config.particleSize.min + Math.random() * (config.particleSize.max - config.particleSize.min),
                 color: config.colors[colorKey],
                 pulse: Math.random() * Math.PI * 2,
@@ -978,16 +1001,50 @@ function initParticleNetwork() {
         for (let i = 0; i < particles.length; i++) {
             const p = particles[i];
             
+            // Mouse Interaction Logic
+            if (mouse.x != null && mouse.y != null) {
+                let dx = mouse.x - p.x;
+                let dy = mouse.y - p.y;
+                let distance = Math.sqrt(dx * dx + dy * dy);
+                if (distance < mouse.radius) {
+                    const forceDirectionX = dx / distance;
+                    const forceDirectionY = dy / distance;
+                    const force = (mouse.radius - distance) / mouse.radius;
+                    const directionX = forceDirectionX * force * 5;
+                    const directionY = forceDirectionY * force * 5;
+                    
+                    p.vx -= directionX * 0.05;
+                    p.vy -= directionY * 0.05;
+                } else {
+                    // Slowly return to base speed
+                    p.vx += (p.baseVx - p.vx) * 0.05;
+                    p.vy += (p.baseVy - p.vy) * 0.05;
+                }
+            } else {
+                p.vx += (p.baseVx - p.vx) * 0.05;
+                p.vy += (p.baseVy - p.vy) * 0.05;
+            }
+
+            // Move particle limits 
+            // Max speed cap
+            const maxSpeed = 2;
+            const speed = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
+            if(speed > maxSpeed) {
+                p.vx = (p.vx / speed) * maxSpeed;
+                p.vy = (p.vy / speed) * maxSpeed;
+            }
+
             p.x += p.vx;
             p.y += p.vy;
             p.pulse += p.pulseSpeed;
             
-            if (p.x < 0 || p.x > width) p.vx *= -1;
-            if (p.y < 0 || p.y > height) p.vy *= -1;
+            if (p.x < 0 || p.x > width) { p.vx *= -1; p.baseVx *= -1; }
+            if (p.y < 0 || p.y > height) { p.vy *= -1; p.baseVy *= -1; }
             
             p.x = Math.max(0, Math.min(width, p.x));
             p.y = Math.max(0, Math.min(height, p.y));
 
+            // Connection Lines
             for (let j = i + 1; j < particles.length; j++) {
                 const p2 = particles[j];
                 const dx = p.x - p2.x;
@@ -1000,19 +1057,38 @@ function initParticleNetwork() {
                     ctx.moveTo(p.x, p.y);
                     ctx.lineTo(p2.x, p2.y);
                     ctx.strokeStyle = p.color + alpha + ')';
-                    ctx.lineWidth = 0.5;
+                    ctx.lineWidth = 0.8;
                     ctx.stroke();
                 }
             }
-
-            const pulseAlpha = 0.4 + Math.sin(p.pulse) * 0.2;
-            const pulseSize = p.size * (1 + Math.sin(p.pulse) * 0.15);
             
+            // Draw Mouse Connection
+            if (mouse.x != null && mouse.y != null) {
+                 const dx = p.x - mouse.x;
+                 const dy = p.y - mouse.y;
+                 const dist = Math.sqrt(dx * dx + dy * dy);
+                 if(dist < mouse.radius) {
+                     const alpha = (1 - dist / mouse.radius) * 0.3;
+                     ctx.beginPath();
+                     ctx.moveTo(p.x, p.y);
+                     ctx.lineTo(mouse.x, mouse.y);
+                     ctx.strokeStyle = `rgba(147, 51, 234, ${alpha})`;
+                     ctx.lineWidth = 0.5;
+                     ctx.stroke();
+                 }
+            }
+
+            // Draw Particle
+            const pulseAlpha = 0.4 + Math.sin(p.pulse) * 0.2;
+            const pulseSize = p.size * (1 + Math.sin(p.pulse) * 0.2);
+            
+            // Outer Glow
             ctx.beginPath();
-            ctx.arc(p.x, p.y, pulseSize + 2, 0, Math.PI * 2);
-            ctx.fillStyle = p.color + (pulseAlpha * 0.3) + ')';
+            ctx.arc(p.x, p.y, pulseSize * 2, 0, Math.PI * 2);
+            ctx.fillStyle = p.color + (pulseAlpha * 0.15) + ')';
             ctx.fill();
             
+            // Core
             ctx.beginPath();
             ctx.arc(p.x, p.y, pulseSize, 0, Math.PI * 2);
             ctx.fillStyle = p.color + pulseAlpha + ')';
