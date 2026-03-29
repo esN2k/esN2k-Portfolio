@@ -23,6 +23,7 @@ const translations = {
             projects: 'Projects',
             education: 'Education',
             contact: 'Contact',
+            logoAria: 'esN2k. Go to top of page',
             languageAria: 'Language switcher',
             toggleOpen: 'Open navigation menu',
             toggleClose: 'Close navigation menu',
@@ -249,6 +250,7 @@ const translations = {
             projects: 'Projeler',
             education: 'Eğitim',
             contact: 'İletişim',
+            logoAria: 'esN2k. Sayfanın en üstüne git',
             languageAria: 'Dil seçici',
             toggleOpen: 'Gezinme menüsünü aç',
             toggleClose: 'Gezinme menüsünü kapat',
@@ -501,19 +503,45 @@ document.addEventListener('DOMContentLoaded', () => {
 function initPageLoader() {
     const loader = document.getElementById('pageLoader');
     const heroElements = document.querySelectorAll('.hero-enter');
+    const startTime = performance.now();
+    const compactViewport = window.innerWidth <= 900;
+    const minimumDuration = prefersReducedMotion.matches ? 150 : (compactViewport ? 380 : 520);
+    const fallbackDuration = prefersReducedMotion.matches ? 250 : (compactViewport ? 700 : 900);
+    let hasFinished = false;
 
-    // Hide loader after animation completes with better timing
-    setTimeout(() => {
+    const revealHero = () => {
+        heroElements.forEach((element) => element.classList.add('visible'));
+    };
+
+    const finishLoader = () => {
+        if (hasFinished) return;
+        hasFinished = true;
+
         if (loader) {
             loader.classList.add('hidden');
-            document.body.classList.remove('loading');
+            window.setTimeout(() => {
+                if (loader) {
+                    loader.setAttribute('hidden', '');
+                }
+            }, 380);
         }
 
-        // Trigger hero entrance animations with staggered delay
-        setTimeout(() => {
-            heroElements.forEach(el => el.classList.add('visible'));
-        }, 200);
-    }, 2200); // Increased from 1600ms to 2200ms for smoother experience
+        document.body.classList.remove('loading');
+        window.setTimeout(revealHero, 40);
+    };
+
+    const scheduleFinish = () => {
+        const elapsed = performance.now() - startTime;
+        window.setTimeout(finishLoader, Math.max(0, minimumDuration - elapsed));
+    };
+
+    if (document.readyState === 'complete') {
+        scheduleFinish();
+    } else {
+        window.addEventListener('load', scheduleFinish, { once: true });
+    }
+
+    window.setTimeout(scheduleFinish, fallbackDuration);
 }
 
 function getInitialLang() {
@@ -594,7 +622,7 @@ function applyMetaTranslations() {
 
     const canonicalLink = document.getElementById('canonicalLink');
     if (canonicalLink) {
-        canonicalLink.setAttribute('href', 'https://esn2k.engineer/');
+        canonicalLink.setAttribute('href', getLocalizedSiteUrl(state.lang));
     }
 }
 
@@ -672,43 +700,41 @@ function restartTypingEffect() {
 
     const runTypewriter = async () => {
         let roleIndex = 0;
-        // Start by fully displaying the first role
         roleElement.textContent = roles[0];
         let charIndex = roles[0].length;
-        
+
         await sleep(2000);
 
         while (token === state.typingToken) {
             const currentRole = roles[roleIndex];
-            
-            // Deleting phase
-            while (charIndex > 0) {
+
+            while (charIndex > 1) {
                 if (token !== state.typingToken) return;
                 charIndex--;
                 roleElement.textContent = currentRole.slice(0, charIndex);
-                await sleep(35 + Math.random() * 20); // Faster, slightly randomized delete
+                await sleep(35 + Math.random() * 20);
             }
 
             if (token !== state.typingToken) return;
-            
-            // Next word
+
             roleIndex = (roleIndex + 1) % roles.length;
             const nextRole = roles[roleIndex];
             triggerGlitch();
-            
-            await sleep(400); // Wait before typing new word
-            
-            // Typing phase
+
+            charIndex = Math.min(1, nextRole.length);
+            roleElement.textContent = nextRole.slice(0, charIndex);
+            await sleep(150);
+
             while (charIndex < nextRole.length) {
                 if (token !== state.typingToken) return;
                 charIndex++;
                 roleElement.textContent = nextRole.slice(0, charIndex);
-                await sleep(60 + Math.random() * 40); // Natural random typing speed
+                await sleep(60 + Math.random() * 40);
             }
 
             if (token !== state.typingToken) return;
-            
-            await sleep(2500); // Wait before deleting again
+
+            await sleep(2500);
         }
     };
     
@@ -789,6 +815,7 @@ function initTimelineReveal() {
 
 function initNavbar() {
     const navbar = document.getElementById('navbar');
+    const navLogo = document.querySelector('.nav-logo');
     if (!navbar) return;
 
     const updateNavbarState = () => {
@@ -818,6 +845,16 @@ function initNavbar() {
     const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
 
     const setActiveLink = (id) => {
+        const isHeroActive = !id || id === 'hero';
+        if (navLogo) {
+            navLogo.classList.toggle('active', isHeroActive);
+            if (isHeroActive) {
+                navLogo.setAttribute('aria-current', 'page');
+            } else {
+                navLogo.removeAttribute('aria-current');
+            }
+        }
+
         navLinks.forEach((link) => {
             const isActive = link.getAttribute('href') === `#${id}`;
             link.classList.toggle('active', isActive);
@@ -841,6 +878,20 @@ function initNavbar() {
     );
 
     sections.forEach((section) => observer.observe(section));
+
+    if (window.scrollY < 120) {
+        setActiveLink('hero');
+    }
+
+    window.addEventListener(
+        'scroll',
+        () => {
+            if (window.scrollY < 120) {
+                setActiveLink('hero');
+            }
+        },
+        { passive: true },
+    );
 }
 
 function initMobileMenu() {
@@ -972,9 +1023,11 @@ function animateCounter(element, target) {
 
 function initParticleNetwork() {
     const canvas = document.getElementById('heroCanvas');
-    // Disable on mobile or reduced motion devices
-    if (!canvas || prefersReducedMotion.matches || window.matchMedia("(hover: none)").matches) {
-        if(canvas) canvas.style.display = 'none';
+    const disableForMobile = window.innerWidth <= 900
+        || window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+
+    if (!canvas || prefersReducedMotion.matches || disableForMobile) {
+        if (canvas) canvas.style.display = 'none';
         return;
     }
 
