@@ -88,7 +88,7 @@ esN2k-Portfolio/
 - St. Giles English programs (C1 Advanced → C2 Mastery)
 
 **Certification:**
-- YÖKDİL Academic English Exam — Grade A+, 92/100 (C2 Mastery)
+- YÖKDİL Academic English Exam — Score 85/100 (C2 Equivalent)
 
 ### Work Experience (Current)
 1. **Bi-Art** — BI & Data Engineering Intern (Oct 2025 - Jan 2026)
@@ -107,7 +107,7 @@ esN2k-Portfolio/
 - **AI/ML:** LangChain, RAG Pipelines, FAISS, Ollama, Prompt Engineering
 - **Development:** Python, Flutter/Dart, FastAPI, Streamlit, Docker, Git
 - **Data:** SQL, Power BI, Pandas, Web Scraping
-- **Languages:** English C2 (YÖKDİL 92/100), Turkish Native
+- **Languages:** English C2 (YÖKDİL 85/100), Turkish Native
 
 ---
 
