@@ -61,7 +61,7 @@
     --gradient-primary: linear-gradient(135deg, var(--accent-1), var(--accent-2));
     --gradient-text: linear-gradient(135deg, #c084fc, #38bdf8);
     
-    --font-display: 'Geist', var(--font-sans);
+    --font-display: 'Cabinet Grotesk', 'Inter', sans-serif;
     --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
     

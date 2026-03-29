@@ -472,7 +472,21 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollReveal();
     initTimelineReveal();
     initStatCounters();
-    initParticleNetwork();
+    
+    // Lazy init canvas when hero section is visible
+    const heroSection = document.getElementById('hero');
+    if (heroSection) {
+        const canvasObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    initParticleNetwork();
+                    canvasObserver.disconnect();
+                }
+            });
+        }, { threshold: 0.1 });
+        canvasObserver.observe(heroSection);
+    }
+    
     applyLanguage(state.lang, { persist: false });
     
     if (typeof lucide !== 'undefined') {
