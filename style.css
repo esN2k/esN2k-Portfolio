@@ -756,6 +756,8 @@ strong { color: var(--text-primary); font-weight: 600; }
     position: relative;
     padding: var(--section-padding) 0;
     scroll-margin-top: 90px;
+    content-visibility: auto;
+    contain-intrinsic-size: 1000px;
 }
 
 .section-header {
