@@ -78,7 +78,7 @@ const translations = {
             p1:
                 "I'm a <strong>Computer Engineering</strong> senior at Selçuk University with a passion for building systems that think. My journey spans from <strong>AI-powered RAG chatbots</strong> to <strong>cross-platform mobile apps</strong> and <strong>enterprise analytics portals</strong>.",
             p2:
-                "What sets me apart? I'm <strong>natively bilingual</strong> with verified C2 English mastery (YÖKDİL 92/100, EF SET C2), plus immersive study-abroad experience in the <span class=\"flag\">🇬🇧</span> UK and <span class=\"flag\">🇨🇦</span> Canada.",
+                "What sets me apart? I'm <strong>natively bilingual</strong> with verified C2 English mastery (YÖKDİL 85/100, EF SET C2), plus immersive study-abroad experience in the <span class=\"flag\">🇬🇧</span> UK and <span class=\"flag\">🇨🇦</span> Canada.",
             p3:
                 "Currently, I'm building my thesis project, a <strong>multilingual RAG chatbot</strong> using LangChain, FAISS, and Ollama, while coordinating operations across 12 branches in my current role.",
             languages: {
@@ -200,7 +200,7 @@ const translations = {
             certificates: {
                 yokdil: {
                     name: 'YÖKDİL Academic English',
-                    detail: 'Grade A+ — C2 Mastery',
+                    detail: 'Score 85/100 — C2 Equivalent',
                 },
                 efset: {
                     name: 'EF SET English Certificate',
@@ -297,7 +297,7 @@ const translations = {
             p1:
                 '<strong>Bilgisayar Mühendisliği</strong> son sınıf öğrencisi olarak düşünebilen sistemler kurmaya odaklanıyorum. Yolculuğum <strong>RAG tabanlı sohbet botlarından</strong> <strong>çok platformlu mobil uygulamalara</strong> ve <strong>kurumsal analitik portallara</strong> uzanıyor.',
             p2:
-                'Beni farklı kılan nokta, doğrulanmış C2 İngilizce yetkinliğiyle <strong>iki dilli</strong> çalışabilmem. YÖKDİL 92/100 ve EF SET C2 sonuçlarının yanında <span class="flag">🇬🇧</span> Birleşik Krallık ve <span class="flag">🇨🇦</span> Kanada deneyimlerim var.',
+                'Beni farklı kılan nokta, doğrulanmış C2 İngilizce yetkinliğiyle <strong>iki dilli</strong> çalışabilmem. YÖKDİL 85/100 ve EF SET C2 sonuçlarının yanında <span class="flag">🇬🇧</span> Birleşik Krallık ve <span class="flag">🇨🇦</span> Kanada deneyimlerim var.',
             p3:
                 'Şu anda LangChain, FAISS ve Ollama kullanan <strong>çok dilli bir RAG chatbot</strong> tez projesi geliştirirken, mevcut işimde 12 şubenin operasyonunu koordine ediyorum.',
             languages: {
@@ -419,7 +419,7 @@ const translations = {
             certificates: {
                 yokdil: {
                     name: 'YÖKDİL Akademik İngilizce',
-                    detail: 'A+ Notu — C2 Düzeyi',
+                    detail: '85/100 — C2 Düzeyi',
                 },
                 efset: {
                     name: 'EF SET İngilizce Sertifikası',
@@ -574,7 +574,7 @@ function setMetaContent(selector, value) {
 }
 
 function initLanguageControls() {
-    document.querySelectorAll('.lang-btn').forEach((button) => {
+    document.querySelectorAll('.lang-switch').forEach((button) => {
         button.addEventListener('click', () => {
             const nextLang = button.dataset.lang;
             if (!SUPPORTED_LANGS.includes(nextLang) || nextLang === state.lang) {
@@ -588,7 +588,7 @@ function initLanguageControls() {
 }
 
 function updateLanguageButtons() {
-    document.querySelectorAll('.lang-btn').forEach((button) => {
+    document.querySelectorAll('.lang-switch').forEach((button) => {
         const isActive = button.dataset.lang === state.lang;
         button.classList.toggle('active', isActive);
         button.setAttribute('aria-pressed', String(isActive));
