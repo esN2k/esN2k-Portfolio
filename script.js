@@ -474,6 +474,10 @@ document.addEventListener('DOMContentLoaded', () => {
     initStatCounters();
     initParticleNetwork();
     applyLanguage(state.lang, { persist: false });
+    
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
 
     if (typeof prefersReducedMotion.addEventListener === 'function') {
         prefersReducedMotion.addEventListener('change', restartTypingEffect);
@@ -629,8 +633,8 @@ function restartTypingEffect() {
     const summaryElement = document.getElementById('heroRoleSummary');
     const roles = translations[state.lang].hero.roles;
 
-    window.clearTimeout(state.typingTimeoutId);
     state.typingToken += 1;
+    const token = state.typingToken;
 
     if (!roleElement || !roles.length) return;
 
@@ -638,51 +642,63 @@ function restartTypingEffect() {
         summaryElement.textContent = translations[state.lang].hero.roleSummary;
     }
 
-    roleElement.textContent = roles[0];
-
     if (prefersReducedMotion.matches) {
+        roleElement.textContent = roles[0];
         return;
     }
 
-    let roleIndex = 0;
-    let charIndex = roles[0].length;
-    let isDeleting = true;
-    const token = state.typingToken;
-
     const triggerGlitch = () => {
         roleElement.classList.add('typing-glitch');
-        setTimeout(() => roleElement.classList.remove('typing-glitch'), 150);
+        setTimeout(() => {
+            if (roleElement) roleElement.classList.remove('typing-glitch');
+        }, 150);
     };
 
-    const step = () => {
-        if (token !== state.typingToken) return;
+    const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-        const currentRole = roles[roleIndex];
+    const runTypewriter = async () => {
+        let roleIndex = 0;
+        // Start by fully displaying the first role
+        roleElement.textContent = roles[0];
+        let charIndex = roles[0].length;
+        
+        await sleep(2000);
 
-        if (isDeleting) {
-            charIndex = Math.max(charIndex - 1, 0);
-        } else {
-            charIndex = Math.min(charIndex + 1, currentRole.length);
-        }
+        while (token === state.typingToken) {
+            const currentRole = roles[roleIndex];
+            
+            // Deleting phase
+            while (charIndex > 0) {
+                if (token !== state.typingToken) return;
+                charIndex--;
+                roleElement.textContent = currentRole.slice(0, charIndex);
+                await sleep(35 + Math.random() * 20); // Faster, slightly randomized delete
+            }
 
-        roleElement.textContent = currentRole.slice(0, charIndex);
-
-        let delay = isDeleting ? 45 : 85;
-
-        if (isDeleting && charIndex === 0) {
+            if (token !== state.typingToken) return;
+            
+            // Next word
             roleIndex = (roleIndex + 1) % roles.length;
-            isDeleting = false;
-            delay = 400;
+            const nextRole = roles[roleIndex];
             triggerGlitch();
-        } else if (!isDeleting && charIndex === currentRole.length) {
-            isDeleting = true;
-            delay = 2000;
+            
+            await sleep(400); // Wait before typing new word
+            
+            // Typing phase
+            while (charIndex < nextRole.length) {
+                if (token !== state.typingToken) return;
+                charIndex++;
+                roleElement.textContent = nextRole.slice(0, charIndex);
+                await sleep(60 + Math.random() * 40); // Natural random typing speed
+            }
+
+            if (token !== state.typingToken) return;
+            
+            await sleep(2500); // Wait before deleting again
         }
-
-        state.typingTimeoutId = window.setTimeout(step, delay);
     };
-
-    state.typingTimeoutId = window.setTimeout(step, 2000);
+    
+    runTypewriter().catch(console.error);
 }
 
 function initScrollReveal() {
@@ -703,8 +719,8 @@ function initScrollReveal() {
             });
         },
         {
-            threshold: 0.15,
-            rootMargin: '0px 0px -80px 0px',
+            threshold: 0.05,
+            rootMargin: '0px 0px -20px 0px',
         },
     );
 
@@ -746,8 +762,8 @@ function initTimelineReveal() {
             });
         },
         {
-            threshold: 0.2,
-            rootMargin: '0px 0px -50px 0px',
+            threshold: 0.1,
+            rootMargin: '0px 0px -20px 0px',
         },
     );
 
@@ -827,8 +843,32 @@ function initMobileMenu() {
     });
 
     document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape' && state.menuOpen) {
+        if (!state.menuOpen) return;
+        
+        if (event.key === 'Escape') {
             setMenuState(false);
+            toggle.focus();
+            return;
+        }
+
+        if (event.key === 'Tab') {
+            const focusableElements = menu.querySelectorAll('a[href], button, select');
+            if (focusableElements.length === 0) return;
+            
+            const firstElement = toggle;
+            const lastElement = focusableElements[focusableElements.length - 1];
+
+            if (event.shiftKey) { // Shift + Tab
+                if (document.activeElement === firstElement || document.activeElement === menu) {
+                    lastElement.focus();
+                    event.preventDefault();
+                }
+            } else { // Tab
+                if (document.activeElement === lastElement) {
+                    firstElement.focus();
+                    event.preventDefault();
+                }
+            }
         }
     });
 
@@ -854,6 +894,8 @@ function setMenuState(isOpen) {
     // Prevent body scrolling when menu is open on mobile
     if (isOpen) {
         document.body.style.overflow = 'hidden';
+        // Delay focus slightly to allow transition
+        setTimeout(() => menu.querySelector('a')?.focus(), 100);
     } else {
         document.body.style.overflow = '';
     }
@@ -916,7 +958,11 @@ function animateCounter(element, target) {
 
 function initParticleNetwork() {
     const canvas = document.getElementById('heroCanvas');
-    if (!canvas || prefersReducedMotion.matches) return;
+    // Disable on mobile or reduced motion devices
+    if (!canvas || prefersReducedMotion.matches || window.matchMedia("(hover: none)").matches) {
+        if(canvas) canvas.style.display = 'none';
+        return;
+    }
 
     const ctx = canvas.getContext('2d');
     let particles = [];
@@ -924,15 +970,13 @@ function initParticleNetwork() {
     let isVisible = true;
 
     // Mouse Interaction setup
-    let mouse = { x: null, y: null, radius: 150 };
+    let mouse = { x: null, y: null, radius: 120 };
     
-    // Add event listeners for mouse
     window.addEventListener('mousemove', (event) => {
         const rect = canvas.getBoundingClientRect();
-        // Check if mouse is within hero section roughly
         if (event.clientY <= rect.bottom) {
             mouse.x = event.clientX;
-            mouse.y = event.clientY - rect.top; // Adjust for scroll/position if needed
+            mouse.y = event.clientY - rect.top;
         } else {
             mouse.x = null;
             mouse.y = null;
@@ -944,16 +988,11 @@ function initParticleNetwork() {
         mouse.y = null;
     });
 
+    const characters = ['+', '×', '•', '·'];
     const config = {
-        particleCount: 80,
-        particleSize: { min: 1.5, max: 3.5 },
-        speed: { min: 0.15, max: 0.4 },
-        connectionDistance: 130,
-        colors: {
-            purple: 'rgba(147, 51, 234, ',
-            cyan: 'rgba(6, 182, 212, ',
-            gold: 'rgba(245, 158, 11, '
-        }
+        particleCount: 50,
+        speed: { min: 0.05, max: 0.2 },
+        color: 'rgba(255, 255, 255, '
     };
 
     function resize() {
@@ -969,23 +1008,17 @@ function initParticleNetwork() {
 
     function initParticles(width, height) {
         particles = [];
-        const count = Math.min(config.particleCount, Math.floor((width * height) / 10000));
+        const count = Math.min(config.particleCount, Math.floor((width * height) / 12000));
         
         for (let i = 0; i < count; i++) {
-            const colorKeys = Object.keys(config.colors);
-            const colorKey = colorKeys[Math.floor(Math.random() * colorKeys.length)];
-            
             particles.push({
                 x: Math.random() * width,
                 y: Math.random() * height,
-                vx: (Math.random() - 0.5) * config.speed.max * 2,
-                vy: (Math.random() - 0.5) * config.speed.max * 2,
-                baseVx: (Math.random() - 0.5) * config.speed.max * 2,
-                baseVy: (Math.random() - 0.5) * config.speed.max * 2,
-                size: config.particleSize.min + Math.random() * (config.particleSize.max - config.particleSize.min),
-                color: config.colors[colorKey],
-                pulse: Math.random() * Math.PI * 2,
-                pulseSpeed: 0.02 + Math.random() * 0.03
+                vx: (Math.random() - 0.5) * config.speed.max,
+                vy: (Math.random() - 0.5) * config.speed.max,
+                char: characters[Math.floor(Math.random() * characters.length)],
+                size: Math.random() > 0.5 ? 14 : 10,
+                baseAlpha: 0.03 + Math.random() * 0.08
             });
         }
     }
@@ -997,102 +1030,33 @@ function initParticleNetwork() {
         const height = canvas.height / (Math.min(window.devicePixelRatio || 1, 2));
         
         ctx.clearRect(0, 0, width, height);
-
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        
         for (let i = 0; i < particles.length; i++) {
             const p = particles[i];
             
-            // Mouse Interaction Logic
-            if (mouse.x != null && mouse.y != null) {
-                let dx = mouse.x - p.x;
-                let dy = mouse.y - p.y;
-                let distance = Math.sqrt(dx * dx + dy * dy);
-                if (distance < mouse.radius) {
-                    const forceDirectionX = dx / distance;
-                    const forceDirectionY = dy / distance;
-                    const force = (mouse.radius - distance) / mouse.radius;
-                    const directionX = forceDirectionX * force * 5;
-                    const directionY = forceDirectionY * force * 5;
-                    
-                    p.vx -= directionX * 0.05;
-                    p.vy -= directionY * 0.05;
-                } else {
-                    // Slowly return to base speed
-                    p.vx += (p.baseVx - p.vx) * 0.05;
-                    p.vy += (p.baseVy - p.vy) * 0.05;
-                }
-            } else {
-                p.vx += (p.baseVx - p.vx) * 0.05;
-                p.vy += (p.baseVy - p.vy) * 0.05;
-            }
-
-            // Move particle limits 
-            // Max speed cap
-            const maxSpeed = 2;
-            const speed = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
-            if(speed > maxSpeed) {
-                p.vx = (p.vx / speed) * maxSpeed;
-                p.vy = (p.vy / speed) * maxSpeed;
-            }
-
             p.x += p.vx;
             p.y += p.vy;
-            p.pulse += p.pulseSpeed;
             
-            if (p.x < 0 || p.x > width) { p.vx *= -1; p.baseVx *= -1; }
-            if (p.y < 0 || p.y > height) { p.vy *= -1; p.baseVy *= -1; }
+            if (p.x < 0 || p.x > width) p.vx *= -1;
+            if (p.y < 0 || p.y > height) p.vy *= -1;
             
-            p.x = Math.max(0, Math.min(width, p.x));
-            p.y = Math.max(0, Math.min(height, p.y));
-
-            // Connection Lines
-            for (let j = i + 1; j < particles.length; j++) {
-                const p2 = particles[j];
-                const dx = p.x - p2.x;
-                const dy = p.y - p2.y;
+            let alpha = p.baseAlpha;
+            
+            // Mouse Interaction Logic - increase alpha near mouse
+            if (mouse.x != null && mouse.y != null) {
+                const dx = mouse.x - p.x;
+                const dy = mouse.y - p.y;
                 const dist = Math.sqrt(dx * dx + dy * dy);
-
-                if (dist < config.connectionDistance) {
-                    const alpha = (1 - dist / config.connectionDistance) * 0.25;
-                    ctx.beginPath();
-                    ctx.moveTo(p.x, p.y);
-                    ctx.lineTo(p2.x, p2.y);
-                    ctx.strokeStyle = p.color + alpha + ')';
-                    ctx.lineWidth = 0.8;
-                    ctx.stroke();
+                if (dist < mouse.radius) {
+                    alpha = p.baseAlpha + (1 - dist / mouse.radius) * 0.4;
                 }
             }
             
-            // Draw Mouse Connection
-            if (mouse.x != null && mouse.y != null) {
-                 const dx = p.x - mouse.x;
-                 const dy = p.y - mouse.y;
-                 const dist = Math.sqrt(dx * dx + dy * dy);
-                 if(dist < mouse.radius) {
-                     const alpha = (1 - dist / mouse.radius) * 0.3;
-                     ctx.beginPath();
-                     ctx.moveTo(p.x, p.y);
-                     ctx.lineTo(mouse.x, mouse.y);
-                     ctx.strokeStyle = `rgba(147, 51, 234, ${alpha})`;
-                     ctx.lineWidth = 0.5;
-                     ctx.stroke();
-                 }
-            }
-
-            // Draw Particle
-            const pulseAlpha = 0.4 + Math.sin(p.pulse) * 0.2;
-            const pulseSize = p.size * (1 + Math.sin(p.pulse) * 0.2);
-            
-            // Outer Glow
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, pulseSize * 2, 0, Math.PI * 2);
-            ctx.fillStyle = p.color + (pulseAlpha * 0.15) + ')';
-            ctx.fill();
-            
-            // Core
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, pulseSize, 0, Math.PI * 2);
-            ctx.fillStyle = p.color + pulseAlpha + ')';
-            ctx.fill();
+            ctx.fillStyle = config.color + alpha + ')';
+            ctx.font = p.size + "px var(--font-mono, monospace)";
+            ctx.fillText(p.char, p.x, p.y);
         }
 
         animationId = requestAnimationFrame(draw);

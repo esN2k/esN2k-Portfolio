@@ -65,6 +65,9 @@
             window.__INITIAL_SITE_LANG__ = initialLang;
         })();
     </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="loading">
@@ -692,25 +695,25 @@
 
                     <div class="contact-grid">
                         <a href="mailto:dodikbalaman@gmail.com" class="contact-card glass-card">
-                            <span class="contact-icon" aria-hidden="true">✉️</span>
+                            <span class="contact-icon" aria-hidden="true"><i data-lucide="mail"></i></span>
                             <span class="contact-label" data-i18n="contact.labels.email">Email</span>
                             <span class="contact-value">dodikbalaman@gmail.com</span>
                         </a>
 
                         <a href="https://linkedin.com/in/esn2k" target="_blank" rel="noopener noreferrer" class="contact-card glass-card">
-                            <span class="contact-icon" aria-hidden="true">💼</span>
+                            <span class="contact-icon" aria-hidden="true"><i data-lucide="linkedin"></i></span>
                             <span class="contact-label" data-i18n="contact.labels.linkedin">LinkedIn</span>
                             <span class="contact-value">linkedin.com/in/esn2k</span>
                         </a>
 
                         <a href="https://github.com/esN2k" target="_blank" rel="noopener noreferrer" class="contact-card glass-card">
-                            <span class="contact-icon" aria-hidden="true">🐙</span>
+                            <span class="contact-icon" aria-hidden="true"><i data-lucide="github"></i></span>
                             <span class="contact-label" data-i18n="contact.labels.github">GitHub</span>
                             <span class="contact-value">github.com/esN2k</span>
                         </a>
 
                         <a href="tel:+905424081102" class="contact-card glass-card">
-                            <span class="contact-icon" aria-hidden="true">📱</span>
+                            <span class="contact-icon" aria-hidden="true"><i data-lucide="phone"></i></span>
                             <span class="contact-label" data-i18n="contact.labels.phone">Phone</span>
                             <span class="contact-value">+90 (542) 408 1102</span>
                         </a>
@@ -742,6 +745,7 @@
         </div>
     </footer>
 
+    <script src="https://unpkg.com/lucide@latest"></script>
     <script src="script.js" defer></script>
 </body>
 </html>
