@@ -594,7 +594,7 @@ function applyMetaTranslations() {
 
     const canonicalLink = document.getElementById('canonicalLink');
     if (canonicalLink) {
-        canonicalLink.setAttribute('href', getLocalizedSiteUrl(state.lang));
+        canonicalLink.setAttribute('href', 'https://esn2k.engineer/');
     }
 }
 
@@ -907,11 +907,11 @@ function setMenuState(isOpen) {
     
     // Prevent body scrolling when menu is open on mobile
     if (isOpen) {
-        document.body.style.overflow = 'hidden';
+        document.body.classList.add('menu-open');
         // Delay focus slightly to allow transition
         setTimeout(() => menu.querySelector('a')?.focus(), 100);
     } else {
-        document.body.style.overflow = '';
+        document.body.classList.remove('menu-open');
     }
     
     updateNavToggleLabel();
