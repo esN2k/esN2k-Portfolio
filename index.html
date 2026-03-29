@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doğukan Balaman — Software Engineer & AI Specialist</title>
+    <title>Doğukan Balaman — Software Engineer &amp; AI Specialist</title>
     <meta
         name="description"
         content="Portfolio of Doğukan Balaman — AI-focused Software Engineer, bilingual EN/TR specialist building intelligent systems from Istanbul."
@@ -12,7 +12,7 @@
     <meta name="theme-color" content="#050505">
     <meta name="color-scheme" content="dark">
 
-    <meta property="og:title" content="Doğukan Balaman — Software Engineer & AI Specialist">
+    <meta property="og:title" content="Doğukan Balaman — Software Engineer &amp; AI Specialist">
     <meta
         property="og:description"
         content="AI-focused Software Engineer with C2 English mastery. Building RAG systems, cross-platform apps, and data pipelines."
@@ -25,7 +25,7 @@
     <meta property="og:image:alt" content="Portrait of Doğukan Balaman">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Doğukan Balaman — Software Engineer & AI Specialist">
+    <meta name="twitter:title" content="Doğukan Balaman — Software Engineer &amp; AI Specialist">
     <meta
         name="twitter:description"
         content="AI-focused Software Engineer with C2 English mastery. Building RAG systems, cross-platform apps, and data pipelines."
@@ -37,7 +37,7 @@
     <link rel="alternate" hreflang="en" href="https://esn2k.engineer/">
     <link rel="alternate" hreflang="tr" href="https://esn2k.engineer/?lang=tr">
     <link rel="manifest" href="site.webmanifest">
-    <link rel="icon" href="favicon.png" type="image/png">
+    <link rel="icon" href="assets/logo.png" type="image/png">
     <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
     <script>
@@ -67,19 +67,31 @@
     </script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="loading">
     <a href="#main-content" class="skip-link" data-i18n="skip.link">Skip to content</a>
 
-    <nav id="navbar" aria-label="Primary">
-        <div class="nav-container">
-            <a href="#hero" class="nav-logo" aria-label="Go to top of page">esN2k<span class="accent">.</span></a>
+    <!-- ===== PAGE LOADER ===== -->
+    <div class="page-loader" id="pageLoader">
+        <img src="assets/logo.png" alt="" class="loader-logo" width="120" height="120">
+        <div class="loader-bar">
+            <div class="loader-progress"></div>
+        </div>
+    </div>
+
+    <!-- ===== NAVIGATION ===== -->
+    <nav class="navbar" id="navbar" aria-label="Primary">
+        <div class="container">
+            <a href="#hero" class="nav-logo" aria-label="Go to top of page">
+                <img src="assets/logo.png" alt="" class="nav-logo-icon" width="40" height="40">
+                <span class="nav-logo-text">esN2k<span class="accent">.</span></span>
+            </a>
 
             <button
                 class="nav-toggle"
                 id="navToggle"
                 type="button"
                 aria-label="Open navigation menu"
-                aria-controls="navPanel"
+                aria-controls="navMenu"
                 aria-expanded="false"
             >
                 <span></span>
@@ -87,14 +99,14 @@
                 <span></span>
             </button>
 
-            <div class="nav-panel" id="navPanel">
+            <div class="nav-menu" id="navMenu">
                 <ul class="nav-links" id="navLinks">
-                    <li><a href="#about" data-i18n="nav.about">About</a></li>
-                    <li><a href="#skills" data-i18n="nav.skills">Skills</a></li>
-                    <li><a href="#experience" data-i18n="nav.experience">Experience</a></li>
-                    <li><a href="#projects" data-i18n="nav.projects">Projects</a></li>
-                    <li><a href="#education" data-i18n="nav.education">Education</a></li>
-                    <li><a href="#contact" class="nav-cta" data-i18n="nav.contact">Contact</a></li>
+                    <li><a href="#about" class="nav-link" data-i18n="nav.about">About</a></li>
+                    <li><a href="#skills" class="nav-link" data-i18n="nav.skills">Skills</a></li>
+                    <li><a href="#experience" class="nav-link" data-i18n="nav.experience">Experience</a></li>
+                    <li><a href="#projects" class="nav-link" data-i18n="nav.projects">Projects</a></li>
+                    <li><a href="#education" class="nav-link" data-i18n="nav.education">Education</a></li>
+                    <li><a href="#contact" class="nav-link nav-cta" data-i18n="nav.contact">Contact</a></li>
                 </ul>
 
                 <div
@@ -103,10 +115,10 @@
                     aria-label="Language switcher"
                     data-i18n-aria-label="nav.languageAria"
                 >
-                    <button type="button" class="lang-switch" data-lang="en" aria-pressed="true" aria-label="Switch to English">
+                    <button type="button" class="lang-btn" data-lang="en" aria-pressed="true" aria-label="Switch to English">
                         EN
                     </button>
-                    <button type="button" class="lang-switch" data-lang="tr" aria-pressed="false" aria-label="Türkçeye geç">
+                    <button type="button" class="lang-btn" data-lang="tr" aria-pressed="false" aria-label="Türkçeye geç">
                         TR
                     </button>
                 </div>
@@ -114,22 +126,26 @@
         </div>
     </nav>
 
+    <!-- ===== MAIN CONTENT ===== -->
     <main id="main-content">
-        <section id="hero">
+
+        <!-- ===== HERO ===== -->
+        <section id="hero" class="hero">
             <div class="hero-bg" aria-hidden="true">
+                <canvas id="heroCanvas" class="hero-canvas"></canvas>
                 <div class="hero-gradient"></div>
                 <div class="hero-grid"></div>
             </div>
 
             <div class="hero-content">
-                <div class="hero-badge" data-i18n="hero.badge">Available for Work</div>
+                <div class="hero-badge hero-enter hero-enter-1" data-i18n="hero.badge">Available for Work</div>
 
-                <h1>
+                <h1 class="hero-enter hero-enter-2">
                     <span class="hero-greeting" data-i18n="hero.greeting">Hi, I'm</span>
                     <span class="hero-name" data-i18n="hero.name">Doğukan Balaman</span>
                 </h1>
 
-                <div class="hero-role-wrapper">
+                <div class="hero-role-line hero-enter hero-enter-3">
                     <span class="hero-role-prefix" data-i18n="hero.rolePrefix">I build</span>
                     <span class="sr-only" id="heroRoleSummary" data-i18n="hero.roleSummary">
                         AI-powered systems, cross-platform apps, RAG pipelines, data dashboards, and bilingual solutions.
@@ -138,17 +154,17 @@
                     <span class="hero-cursor" aria-hidden="true">|</span>
                 </div>
 
-                <p class="hero-desc" data-i18n-html="hero.description">
+                <p class="hero-desc hero-enter hero-enter-4" data-i18n-html="hero.description">
                     AI-focused Software Engineer with <strong>C2 English mastery</strong>, crafting intelligent systems from
                     Istanbul for the world.
                 </p>
 
-                <div class="hero-actions">
-                    <a href="#projects" class="btn btn-primary" data-i18n="hero.ctaPrimary">Explore My Intelligence</a>
-                    <a href="#contact" class="btn btn-ghost" data-i18n="hero.ctaSecondary">Hire Me</a>
+                <div class="hero-actions hero-enter hero-enter-5">
+                    <a href="#projects" class="btn btn-primary" data-i18n="hero.ctaPrimary">Explore My Work</a>
+                    <a href="#contact" class="btn btn-secondary" data-i18n="hero.ctaSecondary">Get in Touch</a>
                 </div>
 
-                <div class="hero-stats">
+                <div class="hero-stats hero-enter hero-enter-6">
                     <div class="stat">
                         <span class="stat-value">
                             <span class="stat-number" data-target="30">0</span>
@@ -176,20 +192,23 @@
             </div>
 
             <div class="scroll-indicator" aria-hidden="true">
+                <span class="scroll-text">Scroll</span>
                 <div class="scroll-line"></div>
             </div>
         </section>
 
+        <!-- ===== ABOUT ===== -->
         <section id="about" class="section">
             <div class="container">
-                <h2 class="section-title">
+                <div class="section-header">
                     <span class="section-number">01.</span>
-                    <span data-i18n="sections.about">About Me</span>
-                </h2>
+                    <h2 class="section-title" data-i18n="sections.about">About Me</h2>
+                    <div class="section-line"></div>
+                </div>
 
                 <div class="about-grid">
-                    <div class="about-image-wrapper reveal">
-                        <div class="about-image-frame">
+                    <div class="about-image-card glass-card reveal">
+                        <div class="about-image-wrapper">
                             <img
                                 src="assets/profile.jpg"
                                 alt="Portrait of Doğukan Balaman"
@@ -200,39 +219,41 @@
                                 decoding="async"
                                 data-i18n-alt="about.imageAlt"
                             >
+                            <div class="about-image-border" aria-hidden="true"></div>
                         </div>
-                        <div class="about-image-decoration" aria-hidden="true"></div>
                     </div>
 
-                    <div class="about-text reveal">
-                        <p data-i18n-html="about.p1">
-                            I'm a <strong>Computer Engineering</strong> senior at Selçuk University with a passion for
-                            building systems that think. My journey spans from <strong>AI-powered RAG chatbots</strong> to
-                            <strong>cross-platform mobile apps</strong> and <strong>enterprise analytics portals</strong>.
-                        </p>
+                    <div class="about-bio-card glass-card reveal">
+                        <div class="about-bio">
+                            <p data-i18n-html="about.p1">
+                                I'm a <strong>Computer Engineering</strong> senior at Selçuk University with a passion for
+                                building systems that think. My journey spans from <strong>AI-powered RAG chatbots</strong> to
+                                <strong>cross-platform mobile apps</strong> and <strong>enterprise analytics portals</strong>.
+                            </p>
 
-                        <p data-i18n-html="about.p2">
-                            What sets me apart? I'm <strong>natively bilingual</strong> with verified C2 English mastery
-                            (YÖKDİL 85/100, EF SET C2), plus immersive study-abroad experience in the
-                            <span class="flag">🇬🇧</span> UK and <span class="flag">🇨🇦</span> Canada.
-                        </p>
+                            <p data-i18n-html="about.p2">
+                                What sets me apart? I'm <strong>natively bilingual</strong> with verified C2 English mastery
+                                (YÖKDİL 85/100, EF SET C2), plus immersive study-abroad experience in the
+                                <span class="flag">🇬🇧</span> UK and <span class="flag">🇨🇦</span> Canada.
+                            </p>
 
-                        <p data-i18n-html="about.p3">
-                            Currently, I'm building my thesis project, a <strong>multilingual RAG chatbot</strong> using
-                            LangChain, FAISS, and Ollama, while coordinating operations across 12 branches in my current role.
-                        </p>
+                            <p data-i18n-html="about.p3">
+                                Currently, I'm building my thesis project, a <strong>multilingual RAG chatbot</strong> using
+                                LangChain, FAISS, and Ollama, while coordinating operations across 12 branches in my current role.
+                            </p>
+                        </div>
+                    </div>
 
-                        <div class="about-languages">
-                            <div class="lang-card">
-                                <span class="lang-flag">🇹🇷</span>
-                                <span class="lang-name" data-i18n="about.languages.turkish.name">Turkish</span>
-                                <span class="lang-level" data-i18n="about.languages.turkish.level">Native</span>
-                            </div>
-
-                            <div class="lang-card">
-                                <span class="lang-flag">🇬🇧</span>
-                                <span class="lang-name" data-i18n="about.languages.english.name">English</span>
-                                <span class="lang-level" data-i18n="about.languages.english.level">C2 Mastery</span>
+                    <div class="about-details">
+                        <div class="about-detail-card glass-card reveal">
+                            <div class="about-detail-label" data-i18n="about.details.location">Location</div>
+                            <div class="about-detail-value" data-i18n="about.details.locationValue">Istanbul, Turkey</div>
+                        </div>
+                        <div class="about-detail-card glass-card reveal">
+                            <div class="about-detail-label" data-i18n="about.details.languagesLabel">Languages</div>
+                            <div class="about-detail-value">
+                                <span class="lang-badge"><span class="lang-flag">🇹🇷</span> <span data-i18n="about.languages.turkish.level">Native</span></span>
+                                <span class="lang-badge"><span class="lang-flag">🇬🇧</span> <span data-i18n="about.languages.english.level">C2 Mastery</span></span>
                             </div>
                         </div>
                     </div>
@@ -240,17 +261,19 @@
             </div>
         </section>
 
+        <!-- ===== SKILLS ===== -->
         <section id="skills" class="section">
             <div class="container">
-                <h2 class="section-title">
+                <div class="section-header">
                     <span class="section-number">02.</span>
-                    <span data-i18n="sections.skills">Skills &amp; Tools</span>
-                </h2>
+                    <h2 class="section-title" data-i18n="sections.skills">Skills &amp; Tools</h2>
+                    <div class="section-line"></div>
+                </div>
 
                 <div class="skills-grid">
-                    <div class="skill-category reveal">
+                    <div class="skill-category glass-card reveal" data-accent="purple">
                         <div class="skill-icon" aria-hidden="true">🧠</div>
-                        <h3 data-i18n="skills.categories.brain">The Brain — AI & ML</h3>
+                        <h3 data-i18n="skills.categories.brain">The Brain — AI &amp; ML</h3>
                         <div class="skill-tags">
                             <span class="skill-tag">LangChain</span>
                             <span class="skill-tag">RAG Pipelines</span>
@@ -263,7 +286,7 @@
                         </div>
                     </div>
 
-                    <div class="skill-category reveal">
+                    <div class="skill-category glass-card reveal" data-accent="cyan">
                         <div class="skill-icon" aria-hidden="true">⚙️</div>
                         <h3 data-i18n="skills.categories.hands">The Hands — Dev/Ops</h3>
                         <div class="skill-tags">
@@ -280,7 +303,7 @@
                         </div>
                     </div>
 
-                    <div class="skill-category reveal">
+                    <div class="skill-category glass-card reveal" data-accent="gold">
                         <div class="skill-icon" aria-hidden="true">🗣️</div>
                         <h3 data-i18n="skills.categories.voice">The Voice — C2 English</h3>
                         <div class="skill-tags">
@@ -298,23 +321,29 @@
             </div>
         </section>
 
+        <!-- ===== EXPERIENCE ===== -->
         <section id="experience" class="section">
             <div class="container">
-                <h2 class="section-title">
+                <div class="section-header">
                     <span class="section-number">03.</span>
-                    <span data-i18n="sections.experience">Experience</span>
-                </h2>
+                    <h2 class="section-title" data-i18n="sections.experience">Experience</h2>
+                    <div class="section-line"></div>
+                </div>
 
                 <div class="timeline">
                     <div class="timeline-item reveal">
                         <div class="timeline-marker" aria-hidden="true"></div>
                         <div class="timeline-content glass-card">
                             <div class="timeline-header">
-                                <h3 data-i18n="experience.logistics.role">Logistics Coordinator</h3>
-                                <span class="timeline-company" data-i18n="experience.logistics.company">Ser Yöresel Dry Foods</span>
+                                <div>
+                                    <h3 class="timeline-role" data-i18n="experience.logistics.role">Logistics Coordinator</h3>
+                                    <span class="timeline-company" data-i18n="experience.logistics.company">Ser Yöresel Dry Foods</span>
+                                </div>
+                                <div class="timeline-meta">
+                                    <span class="timeline-date" data-i18n="experience.logistics.date">Jul 2024 — Present</span>
+                                </div>
                             </div>
-                            <span class="timeline-date" data-i18n="experience.logistics.date">Jul 2024 — Present</span>
-                            <ul>
+                            <ul class="timeline-list">
                                 <li data-i18n-html="experience.logistics.bullets.0">
                                     Coordinating inventory, procurement, and warehouse operations across <strong>12 branches</strong>
                                 </li>
@@ -334,11 +363,15 @@
                         <div class="timeline-marker" aria-hidden="true"></div>
                         <div class="timeline-content glass-card">
                             <div class="timeline-header">
-                                <h3 data-i18n="experience.bi.role">BI &amp; Data Engineering Intern</h3>
-                                <span class="timeline-company" data-i18n="experience.bi.company">Bi-Art (Remote)</span>
+                                <div>
+                                    <h3 class="timeline-role" data-i18n="experience.bi.role">BI &amp; Data Engineering Intern</h3>
+                                    <span class="timeline-company" data-i18n="experience.bi.company">Bi-Art (Remote)</span>
+                                </div>
+                                <div class="timeline-meta">
+                                    <span class="timeline-date" data-i18n="experience.bi.date">Oct 2025 — Jan 2026</span>
+                                </div>
                             </div>
-                            <span class="timeline-date" data-i18n="experience.bi.date">Oct 2025 — Jan 2026</span>
-                            <ul>
+                            <ul class="timeline-list">
                                 <li data-i18n-html="experience.bi.bullets.0">
                                     Created MSSQL analytical queries and interactive <strong>Power BI dashboards</strong>
                                 </li>
@@ -353,11 +386,15 @@
                         <div class="timeline-marker" aria-hidden="true"></div>
                         <div class="timeline-content glass-card">
                             <div class="timeline-header">
-                                <h3 data-i18n="experience.export.role">Export Operations Representative</h3>
-                                <span class="timeline-company" data-i18n="experience.export.company">Kardelen Nuts</span>
+                                <div>
+                                    <h3 class="timeline-role" data-i18n="experience.export.role">Export Operations Representative</h3>
+                                    <span class="timeline-company" data-i18n="experience.export.company">Kardelen Nuts</span>
+                                </div>
+                                <div class="timeline-meta">
+                                    <span class="timeline-date" data-i18n="experience.export.date">Apr 2024 — Jul 2024</span>
+                                </div>
                             </div>
-                            <span class="timeline-date" data-i18n="experience.export.date">Apr 2024 — Jul 2024</span>
-                            <ul>
+                            <ul class="timeline-list">
                                 <li data-i18n-html="experience.export.bullets.0">
                                     Built the export pipeline from scratch and expanded international B2B relationships
                                 </li>
@@ -372,11 +409,15 @@
                         <div class="timeline-marker" aria-hidden="true"></div>
                         <div class="timeline-content glass-card">
                             <div class="timeline-header">
-                                <h3 data-i18n="experience.software.role">Software Developer &amp; Business Development</h3>
-                                <span class="timeline-company" data-i18n="experience.software.company">Essen Trade</span>
+                                <div>
+                                    <h3 class="timeline-role" data-i18n="experience.software.role">Software Developer &amp; Business Development</h3>
+                                    <span class="timeline-company" data-i18n="experience.software.company">Essen Trade</span>
+                                </div>
+                                <div class="timeline-meta">
+                                    <span class="timeline-date" data-i18n="experience.software.date">Jan 2024 — Apr 2024</span>
+                                </div>
                             </div>
-                            <span class="timeline-date" data-i18n="experience.software.date">Jan 2024 — Apr 2024</span>
-                            <ul>
+                            <ul class="timeline-list">
                                 <li data-i18n-html="experience.software.bullets.0">
                                     Shipped <strong>EssenYemek</strong>, a cross-platform Flutter food delivery app for
                                     iOS, Android, and Web
@@ -394,263 +435,254 @@
             </div>
         </section>
 
+        <!-- ===== PROJECTS ===== -->
         <section id="projects" class="section">
             <div class="container">
-                <h2 class="section-title">
+                <div class="section-header">
                     <span class="section-number">04.</span>
-                    <span data-i18n="sections.projects">Featured Projects</span>
-                </h2>
+                    <h2 class="section-title" data-i18n="sections.projects">Featured Projects</h2>
+                    <div class="section-line"></div>
+                </div>
 
                 <div class="projects-grid">
-                    <article class="project-card glass-card reveal" id="project-selcukai">
-                        <div class="project-header">
-                            <span class="project-icon" aria-hidden="true">🤖</span>
-                            <div class="project-links">
-                                <a
-                                    href="https://github.com/esN2k/SelcukAiAssistant"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    data-i18n-aria-label="projects.selcuk.linkLabel"
-                                    aria-label="Open Selçuk AI Assistant on GitHub"
-                                >
-                                    <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                                    </svg>
-                                </a>
+                    <article class="project-card glass-card reveal featured" id="project-selcukai">
+                        <div class="project-inner">
+                            <div class="project-header">
+                                <span class="project-icon" aria-hidden="true">🤖</span>
+                                <div class="project-links">
+                                    <a
+                                        href="https://github.com/esN2k/SelcukAiAssistant"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="project-link"
+                                        data-i18n-aria-label="projects.selcuk.linkLabel"
+                                        aria-label="Open Selçuk AI Assistant on GitHub"
+                                    >
+                                        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                                        </svg>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                        <h3 class="project-title" data-i18n="projects.selcuk.title">Selçuk AI Assistant</h3>
-                        <span class="project-badge" data-i18n="projects.selcuk.badge">Thesis Project</span>
-                        <p class="project-desc" data-i18n="projects.selcuk.description">
-                            End-to-end multilingual RAG pipeline supporting complex EN/TR contextual queries. Flutter UI +
-                            FastAPI backend powered by LangChain, FAISS, and Ollama.
-                        </p>
-                        <div class="project-tags">
-                            <span>Python</span>
-                            <span>LangChain</span>
-                            <span>FAISS</span>
-                            <span>Flutter</span>
-                            <span>FastAPI</span>
-                            <span>Ollama</span>
+                            <h3 class="project-title" data-i18n="projects.selcuk.title">Selçuk AI Assistant</h3>
+                            <span class="project-badge" data-i18n="projects.selcuk.badge">Thesis Project</span>
+                            <p class="project-desc" data-i18n="projects.selcuk.description">
+                                End-to-end multilingual RAG pipeline supporting complex EN/TR contextual queries. Flutter UI +
+                                FastAPI backend powered by LangChain, FAISS, and Ollama.
+                            </p>
+                            <div class="project-tags">
+                                <span>Python</span>
+                                <span>LangChain</span>
+                                <span>FAISS</span>
+                                <span>Flutter</span>
+                                <span>FastAPI</span>
+                                <span>Ollama</span>
+                            </div>
                         </div>
                     </article>
 
                     <article class="project-card glass-card reveal" id="project-perfectframe">
-                        <div class="project-header">
-                            <span class="project-icon" aria-hidden="true">🎨</span>
-                            <div class="project-links">
-                                <a
-                                    href="https://github.com/esN2k/PerfectFrameAI"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    data-i18n-aria-label="projects.perfectframe.linkLabel"
-                                    aria-label="Open PerfectFrameAI on GitHub"
-                                >
-                                    <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                                    </svg>
-                                </a>
+                        <div class="project-inner">
+                            <div class="project-header">
+                                <span class="project-icon" aria-hidden="true">🎨</span>
+                                <div class="project-links">
+                                    <a href="https://github.com/esN2k/PerfectFrameAI" target="_blank" rel="noopener noreferrer" class="project-link" data-i18n-aria-label="projects.perfectframe.linkLabel" aria-label="Open PerfectFrameAI on GitHub">
+                                        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                        <h3 class="project-title" data-i18n="projects.perfectframe.title">PerfectFrameAI</h3>
-                        <p class="project-desc" data-i18n="projects.perfectframe.description">
-                            Scalable AI content enhancement tool with facial restoration using CodeFormer and cloud inference
-                            via Replicate API. Streamlit-powered interactive interface.
-                        </p>
-                        <div class="project-tags">
-                            <span>Streamlit</span>
-                            <span>Replicate API</span>
-                            <span>CodeFormer</span>
-                            <span>Python</span>
+                            <h3 class="project-title" data-i18n="projects.perfectframe.title">PerfectFrameAI</h3>
+                            <p class="project-desc" data-i18n="projects.perfectframe.description">
+                                Scalable AI content enhancement tool with facial restoration using CodeFormer and cloud inference
+                                via Replicate API. Streamlit-powered interactive interface.
+                            </p>
+                            <div class="project-tags">
+                                <span>Streamlit</span>
+                                <span>Replicate API</span>
+                                <span>CodeFormer</span>
+                                <span>Python</span>
+                            </div>
                         </div>
                     </article>
 
                     <article class="project-card glass-card reveal" id="project-essenyemek">
-                        <div class="project-header">
-                            <span class="project-icon" aria-hidden="true">🍔</span>
-                            <div class="project-links">
-                                <a
-                                    href="https://github.com/esN2k/EssenYemek"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    data-i18n-aria-label="projects.essenyemek.linkLabel"
-                                    aria-label="Open EssenYemek on GitHub"
-                                >
-                                    <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                                    </svg>
-                                </a>
+                        <div class="project-inner">
+                            <div class="project-header">
+                                <span class="project-icon" aria-hidden="true">🍔</span>
+                                <div class="project-links">
+                                    <a href="https://github.com/esN2k/EssenYemek" target="_blank" rel="noopener noreferrer" class="project-link" data-i18n-aria-label="projects.essenyemek.linkLabel" aria-label="Open EssenYemek on GitHub">
+                                        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                        <h3 class="project-title" data-i18n="projects.essenyemek.title">EssenYemek</h3>
-                        <p class="project-desc" data-i18n="projects.essenyemek.description">
-                            Cross-platform food delivery application for a live business, shipped to iOS, Android, and Web.
-                            Built with Flutter/Dart with real-time order tracking.
-                        </p>
-                        <div class="project-tags">
-                            <span>Flutter</span>
-                            <span>Dart</span>
-                            <span>iOS</span>
-                            <span>Android</span>
-                            <span>Web</span>
+                            <h3 class="project-title" data-i18n="projects.essenyemek.title">EssenYemek</h3>
+                            <p class="project-desc" data-i18n="projects.essenyemek.description">
+                                Cross-platform food delivery application for a live business, shipped to iOS, Android, and Web.
+                                Built with Flutter/Dart with real-time order tracking.
+                            </p>
+                            <div class="project-tags">
+                                <span>Flutter</span>
+                                <span>Dart</span>
+                                <span>iOS</span>
+                                <span>Android</span>
+                                <span>Web</span>
+                            </div>
                         </div>
                     </article>
 
                     <article class="project-card glass-card reveal" id="project-biartbiportal">
-                        <div class="project-header">
-                            <span class="project-icon" aria-hidden="true">📊</span>
-                            <div class="project-links">
-                                <a
-                                    href="https://github.com/esN2k/BiartBiPortal-Temiz"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    data-i18n-aria-label="projects.biportal.linkLabel"
-                                    aria-label="Open BiartBiPortal on GitHub"
-                                >
-                                    <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                                    </svg>
-                                </a>
+                        <div class="project-inner">
+                            <div class="project-header">
+                                <span class="project-icon" aria-hidden="true">📊</span>
+                                <div class="project-links">
+                                    <a href="https://github.com/esN2k/BiartBiPortal-Temiz" target="_blank" rel="noopener noreferrer" class="project-link" data-i18n-aria-label="projects.biportal.linkLabel" aria-label="Open BiartBiPortal on GitHub">
+                                        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                        <h3 class="project-title" data-i18n="projects.biportal.title">BiartBiPortal</h3>
-                        <p class="project-desc" data-i18n="projects.biportal.description">
-                            Enterprise business intelligence portal with role-based access control, operational metrics
-                            dashboards, and analytical reporting.
-                        </p>
-                        <div class="project-tags">
-                            <span>C#</span>
-                            <span>.NET</span>
-                            <span>RBAC</span>
-                            <span>Power BI</span>
-                            <span>SQL</span>
+                            <h3 class="project-title" data-i18n="projects.biportal.title">BiartBiPortal</h3>
+                            <p class="project-desc" data-i18n="projects.biportal.description">
+                                Enterprise business intelligence portal with role-based access control, operational metrics
+                                dashboards, and analytical reporting.
+                            </p>
+                            <div class="project-tags">
+                                <span>C#</span>
+                                <span>.NET</span>
+                                <span>RBAC</span>
+                                <span>Power BI</span>
+                                <span>SQL</span>
+                            </div>
                         </div>
                     </article>
 
                     <article class="project-card glass-card reveal" id="project-vbds">
-                        <div class="project-header">
-                            <span class="project-icon" aria-hidden="true">📈</span>
-                            <div class="project-links">
-                                <a
-                                    href="https://github.com/esN2k/VB_DS"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    data-i18n-aria-label="projects.vbds.linkLabel"
-                                    aria-label="Open VB_DS on GitHub"
-                                >
-                                    <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                                    </svg>
-                                </a>
+                        <div class="project-inner">
+                            <div class="project-header">
+                                <span class="project-icon" aria-hidden="true">📈</span>
+                                <div class="project-links">
+                                    <a href="https://github.com/esN2k/VB_DS" target="_blank" rel="noopener noreferrer" class="project-link" data-i18n-aria-label="projects.vbds.linkLabel" aria-label="Open VB_DS on GitHub">
+                                        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                        <h3 class="project-title" data-i18n="projects.vbds.title">VB_DS</h3>
-                        <p class="project-desc" data-i18n="projects.vbds.description">
-                            End-to-end data transformation pipelines for missing data imputation and exploratory data analysis
-                            using Pandas, NumPy, and Jupyter Notebooks.
-                        </p>
-                        <div class="project-tags">
-                            <span>Pandas</span>
-                            <span>NumPy</span>
-                            <span>Jupyter</span>
-                            <span>EDA</span>
+                            <h3 class="project-title" data-i18n="projects.vbds.title">VB_DS</h3>
+                            <p class="project-desc" data-i18n="projects.vbds.description">
+                                End-to-end data transformation pipelines for missing data imputation and exploratory data analysis
+                                using Pandas, NumPy, and Jupyter Notebooks.
+                            </p>
+                            <div class="project-tags">
+                                <span>Pandas</span>
+                                <span>NumPy</span>
+                                <span>Jupyter</span>
+                                <span>EDA</span>
+                            </div>
                         </div>
                     </article>
 
                     <article class="project-card glass-card reveal" id="project-kavurma">
-                        <div class="project-header">
-                            <span class="project-icon" aria-hidden="true">🏭</span>
-                            <div class="project-links">
-                                <a
-                                    href="https://github.com/esN2k/KAVURMA"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    data-i18n-aria-label="projects.kavurma.linkLabel"
-                                    aria-label="Open KAVURMA Corporate Website on GitHub"
-                                >
-                                    <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                                    </svg>
-                                </a>
+                        <div class="project-inner">
+                            <div class="project-header">
+                                <span class="project-icon" aria-hidden="true">🏭</span>
+                                <div class="project-links">
+                                    <a href="https://github.com/esN2k/KAVURMA" target="_blank" rel="noopener noreferrer" class="project-link" data-i18n-aria-label="projects.kavurma.linkLabel" aria-label="Open KAVURMA Corporate Website on GitHub">
+                                        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                        <h3 class="project-title" data-i18n="projects.kavurma.title">KAVURMA Corporate Website</h3>
-                        <p class="project-desc" data-i18n="projects.kavurma.description">
-                            SEO-optimized corporate B2B website for an industrial machinery company, designed to boost export
-                            visibility and international client acquisition.
-                        </p>
-                        <div class="project-tags">
-                            <span>HTML</span>
-                            <span>CSS</span>
-                            <span>JavaScript</span>
-                            <span>SEO</span>
+                            <h3 class="project-title" data-i18n="projects.kavurma.title">KAVURMA Corporate Website</h3>
+                            <p class="project-desc" data-i18n="projects.kavurma.description">
+                                SEO-optimized corporate B2B website for an industrial machinery company, designed to boost export
+                                visibility and international client acquisition.
+                            </p>
+                            <div class="project-tags">
+                                <span>HTML</span>
+                                <span>CSS</span>
+                                <span>JavaScript</span>
+                                <span>SEO</span>
+                            </div>
                         </div>
                     </article>
                 </div>
             </div>
         </section>
 
+        <!-- ===== EDUCATION ===== -->
         <section id="education" class="section">
             <div class="container">
-                <h2 class="section-title">
+                <div class="section-header">
                     <span class="section-number">05.</span>
-                    <span data-i18n="sections.education">Education &amp; Certifications</span>
-                </h2>
+                    <h2 class="section-title" data-i18n="sections.education">Education &amp; Certifications</h2>
+                    <div class="section-line"></div>
+                </div>
 
                 <div class="education-grid">
                     <div class="education-card glass-card reveal">
-                        <div class="edu-icon" aria-hidden="true">🎓</div>
-                        <h3 data-i18n="education.degree.title">B.S. Computer Engineering</h3>
-                        <span class="edu-school" data-i18n="education.degree.school">Selçuk University — Konya, Turkey</span>
-                        <span class="edu-date" data-i18n="education.degree.date">Expected Graduation: June 2026</span>
-                        <p data-i18n="education.degree.description">
-                            GPA: 3.0/4.0 — Thesis: Selçuk AI Assistant (Multilingual RAG Chatbot)
-                        </p>
+                        <div class="education-icon" aria-hidden="true">🎓</div>
+                        <div class="education-content">
+                            <h3 class="education-degree" data-i18n="education.degree.title">B.S. Computer Engineering</h3>
+                            <span class="education-school" data-i18n="education.degree.school">Selçuk University — Konya, Turkey</span>
+                            <span class="education-date" data-i18n="education.degree.date">Expected Graduation: June 2026</span>
+                            <p class="education-desc" data-i18n="education.degree.description">
+                                GPA: 3.0/4.0 — Thesis: Selçuk AI Assistant (Multilingual RAG Chatbot)
+                            </p>
+                        </div>
                     </div>
 
                     <div class="education-card glass-card reveal">
-                        <div class="edu-icon" aria-hidden="true">🇨🇦</div>
-                        <h3 data-i18n="education.canada.title">St. Giles Summer Camp</h3>
-                        <span class="edu-school" data-i18n="education.canada.school">St. Andrew's College — Ontario, Canada</span>
-                        <span class="edu-date" data-i18n="education.canada.date">Summer 2018</span>
-                        <p data-i18n="education.canada.description">
-                            Certified C2 mastery level language education and bilingual immersion
-                        </p>
+                        <div class="education-icon" aria-hidden="true">🇨🇦</div>
+                        <div class="education-content">
+                            <h3 class="education-degree" data-i18n="education.canada.title">St. Giles Summer Camp</h3>
+                            <span class="education-school" data-i18n="education.canada.school">St. Andrew's College — Ontario, Canada</span>
+                            <span class="education-date" data-i18n="education.canada.date">Summer 2018</span>
+                            <p class="education-desc" data-i18n="education.canada.description">
+                                Certified C2 mastery level language education and bilingual immersion
+                            </p>
+                        </div>
                     </div>
 
                     <div class="education-card glass-card reveal">
-                        <div class="edu-icon" aria-hidden="true">🇬🇧</div>
-                        <h3 data-i18n="education.uk.title">St. Giles Summer Camp</h3>
-                        <span class="edu-school" data-i18n="education.uk.school">University of Nottingham — Nottingham, UK</span>
-                        <span class="edu-date" data-i18n="education.uk.date">Summer 2017</span>
-                        <p data-i18n="education.uk.description">
-                            Certified C1 advanced level language education — GPA: 4.0
-                        </p>
-                    </div>
-                </div>
-
-                <div class="certs-row reveal">
-                    <div class="cert-badge">
-                        <span class="cert-score">85/100</span>
-                        <span class="cert-name" data-i18n="education.certificates.yokdil.name">YÖKDİL Academic English</span>
-                        <span class="cert-detail" data-i18n="education.certificates.yokdil.detail">Score 85/100 — C2 Equivalent</span>
+                        <div class="education-icon" aria-hidden="true">🇬🇧</div>
+                        <div class="education-content">
+                            <h3 class="education-degree" data-i18n="education.uk.title">St. Giles Summer Camp</h3>
+                            <span class="education-school" data-i18n="education.uk.school">University of Nottingham — Nottingham, UK</span>
+                            <span class="education-date" data-i18n="education.uk.date">Summer 2017</span>
+                            <p class="education-desc" data-i18n="education.uk.description">
+                                Certified C1 advanced level language education — GPA: 4.0
+                            </p>
+                        </div>
                     </div>
 
-                    <div class="cert-badge">
-                        <span class="cert-score">C2</span>
-                        <span class="cert-name" data-i18n="education.certificates.efset.name">EF SET English Certificate</span>
-                        <span class="cert-detail" data-i18n="education.certificates.efset.detail">Proficient Level</span>
+                    <div class="certifications glass-card reveal">
+                        <h3 class="cert-title" data-i18n="education.certTitle">Certifications</h3>
+                        <div class="certs-grid">
+                            <div class="cert-card">
+                                <span class="cert-icon" aria-hidden="true">📜</span>
+                                <div>
+                                    <div class="cert-name" data-i18n="education.certificates.yokdil.name">YÖKDİL Academic English</div>
+                                    <div class="cert-issuer" data-i18n="education.certificates.yokdil.detail">Score 85/100 — C2 Equivalent</div>
+                                </div>
+                            </div>
+                            <div class="cert-card">
+                                <span class="cert-icon" aria-hidden="true">📜</span>
+                                <div>
+                                    <div class="cert-name" data-i18n="education.certificates.efset.name">EF SET English Certificate</div>
+                                    <div class="cert-issuer" data-i18n="education.certificates.efset.detail">Proficient Level</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- ===== CONTACT ===== -->
         <section id="contact" class="section">
             <div class="container">
-                <h2 class="section-title">
+                <div class="section-header">
                     <span class="section-number">06.</span>
-                    <span data-i18n="sections.contact">Get in Touch</span>
-                </h2>
+                    <h2 class="section-title" data-i18n="sections.contact">Get in Touch</h2>
+                    <div class="section-line"></div>
+                </div>
 
                 <div class="contact-content reveal">
                     <p class="contact-lead" data-i18n-html="contact.lead">
@@ -683,14 +715,30 @@
                             <span class="contact-value">+90 (542) 408 1102</span>
                         </a>
                     </div>
+
+                    <a href="mailto:dodikbalaman@gmail.com" class="contact-cta" data-i18n="contact.cta">
+                        Say Hello →
+                    </a>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer>
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
         <div class="container">
-            <p data-i18n-html="footer.credit">Designed &amp; Built by <strong>Doğukan Balaman</strong> — 2026</p>
+            <div class="footer-socials">
+                <a href="https://github.com/esN2k" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="GitHub">
+                    <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                </a>
+                <a href="https://linkedin.com/in/esn2k" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="LinkedIn">
+                    <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                </a>
+                <a href="mailto:dodikbalaman@gmail.com" class="footer-social" aria-label="Email">
+                    <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                </a>
+            </div>
+            <p class="footer-copy" data-i18n-html="footer.credit">Designed &amp; Built by <strong>Doğukan Balaman</strong> — 2026</p>
         </div>
     </footer>
 

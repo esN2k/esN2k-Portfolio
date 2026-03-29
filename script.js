@@ -56,8 +56,8 @@ const translations = {
             ],
             description:
                 'AI-focused Software Engineer with <strong>C2 English mastery</strong>, crafting intelligent systems from Istanbul for the world.',
-            ctaPrimary: 'Explore My Intelligence',
-            ctaSecondary: 'Hire Me',
+            ctaPrimary: 'Explore My Work',
+            ctaSecondary: 'Get in Touch',
             stats: {
                 projects: {
                     label: 'Projects Built',
@@ -90,6 +90,11 @@ const translations = {
                     name: 'English',
                     level: 'C2 Mastery',
                 },
+            },
+            details: {
+                location: 'Location',
+                locationValue: 'Istanbul, Turkey',
+                languagesLabel: 'Languages',
             },
         },
         skills: {
@@ -197,6 +202,7 @@ const translations = {
                 date: 'Summer 2017',
                 description: 'Certified C1 advanced level language education — GPA: 4.0',
             },
+            certTitle: 'Certifications',
             certificates: {
                 yokdil: {
                     name: 'YÖKDİL Academic English',
@@ -217,6 +223,7 @@ const translations = {
                 github: 'GitHub',
                 phone: 'Phone',
             },
+            cta: 'Say Hello →',
         },
         footer: {
             credit: 'Designed &amp; Built by <strong>Doğukan Balaman</strong> — 2026',
@@ -275,8 +282,8 @@ const translations = {
             ],
             description:
                 'İstanbul merkezli, <strong>C2 düzeyinde İngilizce yetkinliğine</strong> sahip yapay zeka odaklı bir yazılım mühendisi olarak akıllı sistemler geliştiriyorum.',
-            ctaPrimary: 'Zekamı Keşfet',
-            ctaSecondary: 'Beni İşe Al',
+            ctaPrimary: 'Projelerimi Keşfet',
+            ctaSecondary: 'İletişime Geç',
             stats: {
                 projects: {
                     label: 'Tamamlanan Proje',
@@ -309,6 +316,11 @@ const translations = {
                     name: 'İngilizce',
                     level: 'C2 Seviye',
                 },
+            },
+            details: {
+                location: 'Konum',
+                locationValue: 'İstanbul, Türkiye',
+                languagesLabel: 'Diller',
             },
         },
         skills: {
@@ -416,6 +428,7 @@ const translations = {
                 date: 'Yaz 2017',
                 description: 'C1 ileri düzey dil eğitimi sertifikası — GPA: 4.0',
             },
+            certTitle: 'Sertifikalar',
             certificates: {
                 yokdil: {
                     name: 'YÖKDİL Akademik İngilizce',
@@ -436,6 +449,7 @@ const translations = {
                 github: 'GitHub',
                 phone: 'Telefon',
             },
+            cta: 'Merhaba Deyin →',
         },
         footer: {
             credit: '<strong>Doğukan Balaman</strong> tarafından tasarlandı ve geliştirildi — 2026',
@@ -574,7 +588,7 @@ function setMetaContent(selector, value) {
 }
 
 function initLanguageControls() {
-    document.querySelectorAll('.lang-switch').forEach((button) => {
+    document.querySelectorAll('.lang-btn, .lang-switch').forEach((button) => {
         button.addEventListener('click', () => {
             const nextLang = button.dataset.lang;
             if (!SUPPORTED_LANGS.includes(nextLang) || nextLang === state.lang) {
@@ -588,7 +602,7 @@ function initLanguageControls() {
 }
 
 function updateLanguageButtons() {
-    document.querySelectorAll('.lang-switch').forEach((button) => {
+    document.querySelectorAll('.lang-btn, .lang-switch').forEach((button) => {
         const isActive = button.dataset.lang === state.lang;
         button.classList.toggle('active', isActive);
         button.setAttribute('aria-pressed', String(isActive));
@@ -801,7 +815,7 @@ function initNavbar() {
 
 function initMobileMenu() {
     const toggle = document.getElementById('navToggle');
-    const menu = document.getElementById('navMenu');
+    const menu = document.getElementById('navMenu') || document.getElementById('navPanel');
     if (!toggle || !menu) return;
 
     toggle.addEventListener('click', () => {
@@ -836,7 +850,7 @@ function initMobileMenu() {
 
 function setMenuState(isOpen) {
     const toggle = document.getElementById('navToggle');
-    const menu = document.getElementById('navMenu');
+    const menu = document.getElementById('navMenu') || document.getElementById('navPanel');
     if (!toggle || !menu) return;
 
     state.menuOpen = isOpen;
